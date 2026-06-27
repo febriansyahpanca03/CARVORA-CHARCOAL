@@ -276,13 +276,17 @@
         /* ── Sticky Mobile CTA ──────────────────────── */
         .sticky-cta {
             position: fixed; bottom: 0; left: 0; right: 0;
-            z-index: 990; padding: 10px 16px 14px;
-            background: rgba(8,8,8,.95);
-            backdrop-filter: blur(12px);
+            z-index: 990;
+            padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+            background: rgba(8,8,8,.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-top: 1px solid rgba(212,175,55,.15);
         }
         @media (min-width: 1024px) { .sticky-cta { display: none !important; } }
-        @media (max-width: 1023px) { body { padding-bottom: 76px; } }
+        @media (max-width: 1023px) {
+            body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+        }
 
         /* ── Scroll to Top ───────────────────────────── */
         #scroll-top {
@@ -295,15 +299,69 @@
             opacity: 0; transform: translateY(12px);
             pointer-events: none;
         }
-        #scroll-top.show {
-            opacity: 1; transform: translateY(0);
-            pointer-events: auto;
+        #scroll-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        #scroll-top:hover { box-shadow: 0 0 20px rgba(212,175,55,.5); transform: translateY(-2px); }
+        @media (max-width: 1023px) {
+            #scroll-top { bottom: calc(90px + env(safe-area-inset-bottom, 0px)); right: 16px; }
         }
-        #scroll-top:hover {
-            box-shadow: 0 0 20px rgba(212,175,55,.5);
-            transform: translateY(-2px);
+
+        /* ── WA Float — mobile position above sticky bar ── */
+        @media (max-width: 1023px) {
+            .wa-float { bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; }
+            #wa-popup { bottom: calc(168px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; width: 260px !important; }
         }
-        @media (max-width: 1023px) { #scroll-top { bottom: 96px; right: 16px; } }
+
+        /* ── Hero mobile background ──────────────────── */
+        @media (max-width: 1023px) {
+            #home-mobile-bg {
+                position: absolute; inset: 0; z-index: 0;
+                background: url('https://loremflickr.com/800/1200/charcoal,fire,coal?lock=55') center/cover no-repeat;
+                opacity: .12;
+            }
+        }
+        @media (min-width: 1024px) { #home-mobile-bg { display: none; } }
+
+        /* ── Product Carousel — mobile swipe ─────────── */
+        .product-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 1rem;
+            padding-bottom: .5rem;
+            margin: 0 -1.25rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            scrollbar-width: none;
+        }
+        .product-track::-webkit-scrollbar { display: none; }
+        .product-slide {
+            flex-shrink: 0;
+            width: 82vw;
+            max-width: 320px;
+            scroll-snap-align: start;
+        }
+        @media (min-width: 1024px) {
+            .product-track {
+                display: grid !important;
+                grid-template-columns: repeat(3,1fr);
+                gap: 1.5rem;
+                overflow-x: visible;
+                margin: 0;
+                padding: 0;
+                scroll-snap-type: none;
+            }
+            .product-slide { width: auto; max-width: none; flex-shrink: 1; }
+        }
+
+        /* ── Carousel dots ───────────────────────────── */
+        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+        .carousel-dots span {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(212,175,55,.25); transition: all .3s;
+        }
+        .carousel-dots span.active { background: #D4AF37; width: 18px; border-radius: 3px; }
+        @media (min-width: 1024px) { .carousel-dots { display: none; } }
 
         /* ── Loading Screen ──────────────────────────── */
         #loading-screen {

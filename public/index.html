@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="wxZFJmQFMzP8mOM0TdoeCLEo3SKBJ7EojQJC0tqD">
+    <meta name="csrf-token" content="n2scRSxjDxMHiFZNmElEiaqqNBLpv7YIA38adiJp">
     <title>Briket Charcoal Indonesia – Premium Coconut Shell Charcoal Briquette</title>
     <meta name="description" content="Produsen briket arang tempurung kelapa premium Indonesia. 100% alami, bebas kimia, ekspor ke 30+ negara.">
 
@@ -276,13 +276,17 @@
         /* ── Sticky Mobile CTA ──────────────────────── */
         .sticky-cta {
             position: fixed; bottom: 0; left: 0; right: 0;
-            z-index: 990; padding: 10px 16px 14px;
-            background: rgba(8,8,8,.95);
-            backdrop-filter: blur(12px);
+            z-index: 990;
+            padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+            background: rgba(8,8,8,.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-top: 1px solid rgba(212,175,55,.15);
         }
         @media (min-width: 1024px) { .sticky-cta { display: none !important; } }
-        @media (max-width: 1023px) { body { padding-bottom: 76px; } }
+        @media (max-width: 1023px) {
+            body { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+        }
 
         /* ── Scroll to Top ───────────────────────────── */
         #scroll-top {
@@ -295,15 +299,69 @@
             opacity: 0; transform: translateY(12px);
             pointer-events: none;
         }
-        #scroll-top.show {
-            opacity: 1; transform: translateY(0);
-            pointer-events: auto;
+        #scroll-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        #scroll-top:hover { box-shadow: 0 0 20px rgba(212,175,55,.5); transform: translateY(-2px); }
+        @media (max-width: 1023px) {
+            #scroll-top { bottom: calc(90px + env(safe-area-inset-bottom, 0px)); right: 16px; }
         }
-        #scroll-top:hover {
-            box-shadow: 0 0 20px rgba(212,175,55,.5);
-            transform: translateY(-2px);
+
+        /* ── WA Float — mobile position above sticky bar ── */
+        @media (max-width: 1023px) {
+            .wa-float { bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; }
+            #wa-popup { bottom: calc(168px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; width: 260px !important; }
         }
-        @media (max-width: 1023px) { #scroll-top { bottom: 96px; right: 16px; } }
+
+        /* ── Hero mobile background ──────────────────── */
+        @media (max-width: 1023px) {
+            #home-mobile-bg {
+                position: absolute; inset: 0; z-index: 0;
+                background: url('https://loremflickr.com/800/1200/charcoal,fire,coal?lock=55') center/cover no-repeat;
+                opacity: .12;
+            }
+        }
+        @media (min-width: 1024px) { #home-mobile-bg { display: none; } }
+
+        /* ── Product Carousel — mobile swipe ─────────── */
+        .product-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 1rem;
+            padding-bottom: .5rem;
+            margin: 0 -1.25rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            scrollbar-width: none;
+        }
+        .product-track::-webkit-scrollbar { display: none; }
+        .product-slide {
+            flex-shrink: 0;
+            width: 82vw;
+            max-width: 320px;
+            scroll-snap-align: start;
+        }
+        @media (min-width: 1024px) {
+            .product-track {
+                display: grid !important;
+                grid-template-columns: repeat(3,1fr);
+                gap: 1.5rem;
+                overflow-x: visible;
+                margin: 0;
+                padding: 0;
+                scroll-snap-type: none;
+            }
+            .product-slide { width: auto; max-width: none; flex-shrink: 1; }
+        }
+
+        /* ── Carousel dots ───────────────────────────── */
+        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+        .carousel-dots span {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(212,175,55,.25); transition: all .3s;
+        }
+        .carousel-dots span.active { background: #D4AF37; width: 18px; border-radius: 3px; }
+        @media (min-width: 1024px) { .carousel-dots { display: none; } }
 
         /* ── Loading Screen ──────────────────────────── */
         #loading-screen {
@@ -459,6 +517,9 @@
 
 
 <section id="home" class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-void noise">
+
+    
+    <div id="home-mobile-bg"></div>
 
     
     <div class="glow-gold absolute -top-40 right-[10%]  w-[600px] h-[600px]"></div>
@@ -1060,9 +1121,11 @@
         </div>
 
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="0">
+        
+        <div class="product-track" id="product-carousel">
+                        <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos="fade-up"
+                 data-aos-delay="0">
 
                 
                 <div class="img-zoom relative h-48">
@@ -1071,35 +1134,22 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
                                         <div class="absolute top-4 left-4">
-                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">
-                            TERLARIS
-                        </span>
+                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">TERLARIS</span>
                     </div>
-                    
-                    
-                    <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            7800 kcal/kg
-                        </span>
+                                        <div class="absolute bottom-4 right-4">
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">7800 kcal/kg</span>
                     </div>
                 </div>
 
                 
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        BBQ Charcoal
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">Kalori tinggi, nyala lama, cocok untuk semua jenis grill outdoor maupun indoor.</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">BBQ Charcoal</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Kalori tinggi, nyala lama, cocok untuk semua jenis grill outdoor maupun indoor.</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1108,8 +1158,9 @@
                     </div>
                 </div>
             </div>
-                        <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="80">
+                        <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos="fade-up"
+                 data-aos-delay="80">
 
                 
                 <div class="img-zoom relative h-48">
@@ -1118,35 +1169,22 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
                                         <div class="absolute top-4 left-4">
-                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">
-                            POPULER
-                        </span>
+                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">POPULER</span>
                     </div>
-                    
-                    
-                    <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            7200 kcal/kg
-                        </span>
+                                        <div class="absolute bottom-4 right-4">
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">7200 kcal/kg</span>
                     </div>
                 </div>
 
                 
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        Shisha Charcoal
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">Pembakaran merata tanpa asap dan aroma—tidak mengganggu cita rasa tembakau.</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">Shisha Charcoal</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Pembakaran merata tanpa asap dan aroma—tidak mengganggu cita rasa tembakau.</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1155,8 +1193,9 @@
                     </div>
                 </div>
             </div>
-                        <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="160">
+                        <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos="fade-up"
+                 data-aos-delay="160">
 
                 
                 <div class="img-zoom relative h-48">
@@ -1165,35 +1204,22 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
                                         <div class="absolute top-4 left-4">
-                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">
-                            FAVORIT
-                        </span>
+                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">FAVORIT</span>
                     </div>
-                    
-                    
-                    <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            7600 kcal/kg
-                        </span>
+                                        <div class="absolute bottom-4 right-4">
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">7600 kcal/kg</span>
                     </div>
                 </div>
 
                 
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        Hexagonal Charcoal
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">Bentuk segi enam ikonik, mudah disusun di grill, distribusi panas optimal.</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">Hexagonal Charcoal</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Bentuk segi enam ikonik, mudah disusun di grill, distribusi panas optimal.</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1202,8 +1228,9 @@
                     </div>
                 </div>
             </div>
-                        <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="0">
+                        <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos=""
+                 data-aos-delay="0">
 
                 
                 <div class="img-zoom relative h-48">
@@ -1212,35 +1239,22 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
                                         <div class="absolute top-4 left-4">
-                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">
-                            BARU
-                        </span>
+                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">BARU</span>
                     </div>
-                    
-                    
-                    <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            7400 kcal/kg
-                        </span>
+                                        <div class="absolute bottom-4 right-4">
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">7400 kcal/kg</span>
                     </div>
                 </div>
 
                 
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        Finger Charcoal
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">Ukuran ramping fleksibel untuk barbecue portable dan kompor arang kecil.</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">Finger Charcoal</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Ukuran ramping fleksibel untuk barbecue portable dan kompor arang kecil.</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1249,8 +1263,9 @@
                     </div>
                 </div>
             </div>
-                        <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="80">
+                        <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos=""
+                 data-aos-delay="80">
 
                 
                 <div class="img-zoom relative h-48">
@@ -1259,30 +1274,19 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
-                    
-                    
-                    <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            7500 kcal/kg
-                        </span>
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
+                                        <div class="absolute bottom-4 right-4">
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">7500 kcal/kg</span>
                     </div>
                 </div>
 
                 
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        Cube Charcoal
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">Bentuk kubus presisi, pengapian konsisten, ideal untuk memasak jangka panjang.</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">Cube Charcoal</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Bentuk kubus presisi, pengapian konsisten, ideal untuk memasak jangka panjang.</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1291,8 +1295,9 @@
                     </div>
                 </div>
             </div>
-                        <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="160">
+                        <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos=""
+                 data-aos-delay="160">
 
                 
                 <div class="img-zoom relative h-48">
@@ -1301,35 +1306,22 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
                                         <div class="absolute top-4 left-4">
-                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">
-                            CUSTOM
-                        </span>
+                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">CUSTOM</span>
                     </div>
-                    
-                    
-                    <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            Custom
-                        </span>
+                                        <div class="absolute bottom-4 right-4">
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">Custom</span>
                     </div>
                 </div>
 
                 
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        Custom Shape
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">Bentuk &amp; ukuran sesuai spesifikasi buyer. Konsultasikan kebutuhan Anda.</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">Custom Shape</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">Bentuk &amp; ukuran sesuai spesifikasi buyer. Konsultasikan kebutuhan Anda.</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1340,7 +1332,17 @@
             </div>
                     </div>
 
-        <div class="text-center mt-14" data-aos="fade-up">
+        
+        <div class="carousel-dots mt-4" id="carousel-dots">
+                        <span class="active"></span>
+                        <span class=""></span>
+                        <span class=""></span>
+                        <span class=""></span>
+                        <span class=""></span>
+                        <span class=""></span>
+                    </div>
+
+        <div class="text-center mt-10" data-aos="fade-up">
             <a href="#contact" class="btn-primary btn-glow px-10 py-4 rounded-full text-sm">
                 Dapatkan Penawaran Harga →
             </a>
@@ -1904,7 +1906,7 @@
         </div>
 
         
-        <div class="glass rounded-2xl overflow-hidden border border-gold/10" data-aos="fade-up">
+        <div class="hidden md:block glass rounded-2xl overflow-hidden border border-gold/10" data-aos="fade-up">
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead>
@@ -1994,6 +1996,240 @@
                 </table>
             </div>
         </div>
+
+        
+                <div class="md:hidden space-y-3 mt-6">
+                        <div class="glass border border-gold/10 rounded-2xl overflow-hidden"
+                 x-data="{ open: true }">
+                <button @click="open=!open"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left">
+                    <span class="font-grotesk font-semibold text-gold text-sm">BBQ Charcoal</span>
+                    <svg class="w-4 h-4 text-gold transition-transform duration-300"
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="px-5 pb-4 border-t border-gold/10">
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Calorific Value</span>
+                        <span class="text-white text-xs font-medium font-grotesk">7,800 kcal/kg</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Fixed Carbon</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≥ 78%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Moisture</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 5%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Ash Content</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 3%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Burning Time</span>
+                        <span class="text-white text-xs font-medium font-grotesk">3–4 jam</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Smoke</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Minimal</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Size</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Custom</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 ">
+                        <span class="text-gray-500 text-xs">Packing</span>
+                        <span class="text-white text-xs font-medium font-grotesk">10 kg carton</span>
+                    </div>
+                                    </div>
+            </div>
+                        <div class="glass border border-gold/10 rounded-2xl overflow-hidden"
+                 x-data="{ open: false }">
+                <button @click="open=!open"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left">
+                    <span class="font-grotesk font-semibold text-gold text-sm">Shisha Charcoal</span>
+                    <svg class="w-4 h-4 text-gold transition-transform duration-300"
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="px-5 pb-4 border-t border-gold/10">
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Calorific Value</span>
+                        <span class="text-white text-xs font-medium font-grotesk">7,200 kcal/kg</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Fixed Carbon</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≥ 75%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Moisture</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 4%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Ash Content</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 2.5%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Burning Time</span>
+                        <span class="text-white text-xs font-medium font-grotesk">2–3 jam</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Smoke</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Hampir Nol</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Size</span>
+                        <span class="text-white text-xs font-medium font-grotesk">25×25×25 mm</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 ">
+                        <span class="text-gray-500 text-xs">Packing</span>
+                        <span class="text-white text-xs font-medium font-grotesk">3 kg box</span>
+                    </div>
+                                    </div>
+            </div>
+                        <div class="glass border border-gold/10 rounded-2xl overflow-hidden"
+                 x-data="{ open: false }">
+                <button @click="open=!open"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left">
+                    <span class="font-grotesk font-semibold text-gold text-sm">Hexagonal Charcoal</span>
+                    <svg class="w-4 h-4 text-gold transition-transform duration-300"
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="px-5 pb-4 border-t border-gold/10">
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Calorific Value</span>
+                        <span class="text-white text-xs font-medium font-grotesk">7,600 kcal/kg</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Fixed Carbon</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≥ 77%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Moisture</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 5%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Ash Content</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 3%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Burning Time</span>
+                        <span class="text-white text-xs font-medium font-grotesk">3–4 jam</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Smoke</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Minimal</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Size</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Hexagonal</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 ">
+                        <span class="text-gray-500 text-xs">Packing</span>
+                        <span class="text-white text-xs font-medium font-grotesk">10 kg carton</span>
+                    </div>
+                                    </div>
+            </div>
+                        <div class="glass border border-gold/10 rounded-2xl overflow-hidden"
+                 x-data="{ open: false }">
+                <button @click="open=!open"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left">
+                    <span class="font-grotesk font-semibold text-gold text-sm">Finger Charcoal</span>
+                    <svg class="w-4 h-4 text-gold transition-transform duration-300"
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="px-5 pb-4 border-t border-gold/10">
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Calorific Value</span>
+                        <span class="text-white text-xs font-medium font-grotesk">7,400 kcal/kg</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Fixed Carbon</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≥ 76%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Moisture</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 5%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Ash Content</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 3%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Burning Time</span>
+                        <span class="text-white text-xs font-medium font-grotesk">2–3 jam</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Smoke</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Minimal</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Size</span>
+                        <span class="text-white text-xs font-medium font-grotesk">35×10×10 mm</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 ">
+                        <span class="text-gray-500 text-xs">Packing</span>
+                        <span class="text-white text-xs font-medium font-grotesk">10 kg carton</span>
+                    </div>
+                                    </div>
+            </div>
+                        <div class="glass border border-gold/10 rounded-2xl overflow-hidden"
+                 x-data="{ open: false }">
+                <button @click="open=!open"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left">
+                    <span class="font-grotesk font-semibold text-gold text-sm">Cube Charcoal</span>
+                    <svg class="w-4 h-4 text-gold transition-transform duration-300"
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="px-5 pb-4 border-t border-gold/10">
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Calorific Value</span>
+                        <span class="text-white text-xs font-medium font-grotesk">7,500 kcal/kg</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Fixed Carbon</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≥ 76%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Moisture</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 5%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Ash Content</span>
+                        <span class="text-white text-xs font-medium font-grotesk">≤ 3%</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Burning Time</span>
+                        <span class="text-white text-xs font-medium font-grotesk">3–4 jam</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Smoke</span>
+                        <span class="text-white text-xs font-medium font-grotesk">Minimal</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 border-b border-white/5">
+                        <span class="text-gray-500 text-xs">Size</span>
+                        <span class="text-white text-xs font-medium font-grotesk">25×25×25 mm</span>
+                    </div>
+                                        <div class="flex justify-between py-2.5 ">
+                        <span class="text-gray-500 text-xs">Packing</span>
+                        <span class="text-white text-xs font-medium font-grotesk">10 kg carton</span>
+                    </div>
+                                    </div>
+            </div>
+                    </div>
 
         <p class="text-center text-gray-700 text-xs mt-5 font-grotesk" data-aos="fade-up">
             * Spesifikasi dapat bervariasi. COA tersedia untuk setiap batch pengiriman. Custom spec tersedia sesuai permintaan buyer.
@@ -2462,6 +2698,18 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
+<script>
+// Product carousel dots
+(function() {
+    const track = document.getElementById('product-carousel');
+    const dots  = document.querySelectorAll('#carousel-dots span');
+    if (!track || !dots.length) return;
+    track.addEventListener('scroll', () => {
+        const idx = Math.round(track.scrollLeft / track.clientWidth * (dots.length / 2));
+        dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
+    }, { passive: true });
+})();
+</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jvectormap-next@3.1.1/jquery-jvectormap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jvectormap-content@1.0.2/world-mill.js"></script>

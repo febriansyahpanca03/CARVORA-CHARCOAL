@@ -7,6 +7,9 @@
 ══════════════════════════════════════════════════════════════ --}}
 <section id="home" class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-void noise">
 
+    {{-- Mobile-only charcoal background --}}
+    <div id="home-mobile-bg"></div>
+
     {{-- ambient glows --}}
     <div class="glow-gold absolute -top-40 right-[10%]  w-[600px] h-[600px]"></div>
     <div class="glow-gold absolute  bottom-0 left-[5%] w-[400px] h-[400px]" style="opacity:.07"></div>
@@ -411,10 +414,12 @@
         ];
         @endphp
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{-- Swipe carousel on mobile, grid on desktop --}}
+        <div class="product-track" id="product-carousel">
             @foreach($products as $p)
-            <div class="glass card-lift rounded-2xl overflow-hidden group"
-                 data-aos="fade-up" data-aos-delay="{{ ($loop->index % 3) * 80 }}">
+            <div class="product-slide glass card-lift rounded-2xl overflow-hidden group"
+                 data-aos="{{ $loop->index < 3 ? 'fade-up' : '' }}"
+                 data-aos-delay="{{ ($loop->index % 3) * 80 }}">
 
                 {{-- image --}}
                 <div class="img-zoom relative h-48">
@@ -423,37 +428,24 @@
                          class="w-full h-full object-cover"
                          style="filter:brightness(.45) saturate(.6);">
                     <div class="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent"></div>
-
-                    {{-- glow on hover --}}
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)">
-                    </div>
-
+                         style="background:radial-gradient(circle at 50% 100%, rgba(212,175,55,.15) 0%, transparent 70%)"></div>
                     @if($p['tag'])
                     <div class="absolute top-4 left-4">
-                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">
-                            {{ $p['tag'] }}
-                        </span>
+                        <span class="font-grotesk text-[10px] font-bold tracking-widest text-void bg-gold px-3 py-1 rounded-full">{{ $p['tag'] }}</span>
                     </div>
                     @endif
-
-                    {{-- cal badge --}}
                     <div class="absolute bottom-4 right-4">
-                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">
-                            {{ $p['cal'] }}
-                        </span>
+                        <span class="glass rounded-full px-3 py-1 text-[10px] font-grotesk text-gold border border-gold/20">{{ $p['cal'] }}</span>
                     </div>
                 </div>
 
                 {{-- body --}}
-                <div class="p-6">
-                    <h3 class="font-grotesk font-semibold text-white text-lg mb-2 group-hover:text-gold transition-colors">
-                        {{ $p['name'] }}
-                    </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5">{{ $p['desc'] }}</p>
-
+                <div class="p-5">
+                    <h3 class="font-grotesk font-semibold text-white text-base mb-2 group-hover:text-gold transition-colors">{{ $p['name'] }}</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ $p['desc'] }}</p>
                     <div class="flex items-center justify-between">
-                        <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-xs">Detail →</a>
+                        <a href="#contact" class="btn-ghost px-4 py-2 rounded-full text-xs">Detail →</a>
                         <div class="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center text-gold/40 group-hover:text-gold group-hover:border-gold transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -465,7 +457,14 @@
             @endforeach
         </div>
 
-        <div class="text-center mt-14" data-aos="fade-up">
+        {{-- Carousel dots (mobile only) --}}
+        <div class="carousel-dots mt-4" id="carousel-dots">
+            @foreach($products as $p)
+            <span class="{{ $loop->first ? 'active' : '' }}"></span>
+            @endforeach
+        </div>
+
+        <div class="text-center mt-10" data-aos="fade-up">
             <a href="#contact" class="btn-primary btn-glow px-10 py-4 rounded-full text-sm">
                 Dapatkan Penawaran Harga →
             </a>
@@ -786,8 +785,8 @@
             </p>
         </div>
 
-        {{-- Specs Table --}}
-        <div class="glass rounded-2xl overflow-hidden border border-gold/10" data-aos="fade-up">
+        {{-- Specs Table — desktop only --}}
+        <div class="hidden md:block glass rounded-2xl overflow-hidden border border-gold/10" data-aos="fade-up">
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead>
@@ -827,6 +826,41 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        {{-- Specs Accordion — mobile only --}}
+        @php
+        $mobileSpecs = [
+            'BBQ Charcoal'       => ['Calorific Value'=>'7,800 kcal/kg','Fixed Carbon'=>'≥ 78%','Moisture'=>'≤ 5%','Ash Content'=>'≤ 3%','Burning Time'=>'3–4 jam','Smoke'=>'Minimal','Size'=>'Custom','Packing'=>'10 kg carton'],
+            'Shisha Charcoal'    => ['Calorific Value'=>'7,200 kcal/kg','Fixed Carbon'=>'≥ 75%','Moisture'=>'≤ 4%','Ash Content'=>'≤ 2.5%','Burning Time'=>'2–3 jam','Smoke'=>'Hampir Nol','Size'=>'25×25×25 mm','Packing'=>'3 kg box'],
+            'Hexagonal Charcoal' => ['Calorific Value'=>'7,600 kcal/kg','Fixed Carbon'=>'≥ 77%','Moisture'=>'≤ 5%','Ash Content'=>'≤ 3%','Burning Time'=>'3–4 jam','Smoke'=>'Minimal','Size'=>'Hexagonal','Packing'=>'10 kg carton'],
+            'Finger Charcoal'    => ['Calorific Value'=>'7,400 kcal/kg','Fixed Carbon'=>'≥ 76%','Moisture'=>'≤ 5%','Ash Content'=>'≤ 3%','Burning Time'=>'2–3 jam','Smoke'=>'Minimal','Size'=>'35×10×10 mm','Packing'=>'10 kg carton'],
+            'Cube Charcoal'      => ['Calorific Value'=>'7,500 kcal/kg','Fixed Carbon'=>'≥ 76%','Moisture'=>'≤ 5%','Ash Content'=>'≤ 3%','Burning Time'=>'3–4 jam','Smoke'=>'Minimal','Size'=>'25×25×25 mm','Packing'=>'10 kg carton'],
+        ];
+        @endphp
+        <div class="md:hidden space-y-3 mt-6">
+            @foreach($mobileSpecs as $prodName => $prodSpecs)
+            <div class="glass border border-gold/10 rounded-2xl overflow-hidden"
+                 x-data="{ open: {{ $loop->first ? 'true' : 'false' }} }">
+                <button @click="open=!open"
+                        class="w-full flex items-center justify-between px-5 py-4 text-left">
+                    <span class="font-grotesk font-semibold text-gold text-sm">{{ $prodName }}</span>
+                    <svg class="w-4 h-4 text-gold transition-transform duration-300"
+                         :class="open ? 'rotate-180' : ''"
+                         fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="px-5 pb-4 border-t border-gold/10">
+                    @foreach($prodSpecs as $param => $val)
+                    <div class="flex justify-between py-2.5 {{ !$loop->last ? 'border-b border-white/5' : '' }}">
+                        <span class="text-gray-500 text-xs">{{ $param }}</span>
+                        <span class="text-white text-xs font-medium font-grotesk">{{ $val }}</span>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endforeach
         </div>
 
         <p class="text-center text-gray-700 text-xs mt-5 font-grotesk" data-aos="fade-up">
@@ -984,6 +1018,18 @@
 @endpush
 
 @push('scripts')
+<script>
+// Product carousel dots
+(function() {
+    const track = document.getElementById('product-carousel');
+    const dots  = document.querySelectorAll('#carousel-dots span');
+    if (!track || !dots.length) return;
+    track.addEventListener('scroll', () => {
+        const idx = Math.round(track.scrollLeft / track.clientWidth * (dots.length / 2));
+        dots.forEach((d, i) => d.classList.toggle('active', i === Math.min(idx, dots.length - 1)));
+    }, { passive: true });
+})();
+</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jvectormap-next@3.1.1/jquery-jvectormap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jvectormap-content@1.0.2/world-mill.js"></script>
