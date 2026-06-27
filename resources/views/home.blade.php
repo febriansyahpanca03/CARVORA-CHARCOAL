@@ -410,15 +410,15 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
         {{-- Section header --}}
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
-            <div data-aos="fade-right" class="lg:pr-16">
+        <div class="lg:flex lg:flex-row lg:justify-between lg:items-end gap-6 mb-12 lg:mb-16">
+            <div data-aos="fade-up" class="mb-4 lg:mb-0 lg:pr-16">
                 <span class="section-tag">Varian Produk</span>
                 <div class="gold-line w-14 my-4"></div>
                 <h2 class="display-lg text-white">
                     Produk <span class="shimmer">Unggulan</span><br>Kami
                 </h2>
             </div>
-            <p class="text-gray-500 text-sm max-w-xs leading-relaxed" data-aos="fade-left">
+            <p class="text-gray-500 text-sm max-w-xs leading-relaxed" data-aos="fade-up" data-aos-delay="100">
                 Semua varian dibuat dari tempurung kelapa alami pilihan, melalui proses karbonisasi terkontrol.
             </p>
         </div>
@@ -636,8 +636,8 @@
 <section id="export" class="py-14 lg:py-28 bg-void-2">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
-            <div data-aos="fade-right" class="lg:pr-16">
+        <div class="lg:flex lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
+            <div data-aos="fade-up" class="mb-4 lg:mb-0 lg:pr-16">
                 <span class="section-tag">Jangkauan Global</span>
                 <div class="gold-line w-14 my-4"></div>
                 <h2 class="display-lg text-white">
@@ -718,8 +718,8 @@
 <section id="blog" class="py-14 lg:py-28 bg-void">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
-        <div class="flex justify-between items-end mb-16">
-            <div data-aos="fade-right" class="lg:pr-16">
+        <div class="lg:flex lg:justify-between lg:items-end mb-10 lg:mb-16">
+            <div data-aos="fade-up" class="mb-4 lg:mb-0 lg:pr-16">
                 <span class="section-tag">Blog & Info</span>
                 <div class="gold-line w-14 my-4"></div>
                 <h2 class="display-lg text-white">
