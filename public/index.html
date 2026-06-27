@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="uxIp3mEgs72HAdYObqAsze2hb6GQG5HXJzIlkKr4">
+    <meta name="csrf-token" content="Ixg0lB7YX4dfcWKqoU6arW2IuEBApIxZffB5ngbR">
     <title>Briket Charcoal Indonesia – Premium Coconut Shell Charcoal Briquette</title>
     <meta name="description" content="Produsen briket arang tempurung kelapa premium Indonesia. 100% alami, bebas kimia, ekspor ke 30+ negara.">
 
@@ -254,6 +254,38 @@
             animation: wa-pulse 2.5s infinite;
         }
 
+        /* ── Loading Screen ──────────────────────────── */
+        #loading-screen {
+            position: fixed; inset: 0; z-index: 99999;
+            background: #080808;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity .6s ease;
+        }
+        #loading-screen.fade-out { opacity: 0; pointer-events: none; }
+        #load-progress {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, #A07820, #D4AF37, #F5C842);
+            transition: width 1.4s cubic-bezier(.4,0,.2,1);
+            border-radius: 9px;
+        }
+
+        /* ── WA Popup ────────────────────────────────── */
+        #wa-popup {
+            position: fixed; bottom: 100px; right: 22px; z-index: 998;
+            width: 280px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all .4s cubic-bezier(.4,0,.2,1);
+            pointer-events: none;
+        }
+        #wa-popup.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
         /* ── Noise overlay ───────────────────────────── */
         .noise::after {
             content: '';
@@ -265,8 +297,54 @@
     </style>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jvectormap-next@3.1.1/jquery-jvectormap.min.css">
+<style>
+    .jvectormap-container { background: transparent !important; }
+    .jvectormap-tip { background: #1A1A1A !important; border: 1px solid rgba(212,175,55,.3) !important; color: #fff !important; font-family: 'Space Grotesk',sans-serif !important; font-size: 12px !important; padding: 6px 12px !important; border-radius: 8px !important; }
+    .jvectormap-zoomin, .jvectormap-zoomout { background: rgba(212,175,55,.15) !important; border: 1px solid rgba(212,175,55,.3) !important; color: #D4AF37 !important; border-radius: 6px !important; }
+</style>
+</head>
 <body x-data="{ nav: false, scrolled: false }" @scroll.window="scrolled = window.scrollY > 40">
+
+
+<div id="loading-screen">
+    <img src="/logo.png" alt="Carvora" class="h-20 w-auto mb-8" style="animation:pulse 1.5s ease-in-out infinite">
+    <div class="w-52 h-1 bg-white/5 rounded-full overflow-hidden">
+        <div id="load-progress"></div>
+    </div>
+    <p class="text-gray-700 text-xs tracking-widest mt-4 font-grotesk uppercase">Loading...</p>
+</div>
+
+
+<div id="wa-popup">
+    <div class="glass border border-gold/20 rounded-2xl p-5 shadow-2xl relative">
+        <button onclick="closeWaPopup()"
+                class="absolute top-3 right-3 text-gray-600 hover:text-gold transition-colors text-lg leading-none">✕</button>
+        <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </div>
+            <div>
+                <div class="text-white text-sm font-semibold font-grotesk">Carvora Charcoal</div>
+                <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="text-green-400 text-xs">Online</span>
+                </div>
+            </div>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+            👋 Hi! Need a <span class="text-gold">quote</span> or <span class="text-gold">free sample</span>?<br>
+            Chat us now — we reply fast!
+        </p>
+        <a href="https://wa.me/6282125573419?text=Hello%20Carvora%20Charcoal%2C%0A%0AI%20found%20your%20website%20and%20I%27m%20interested%20in%20your%20coconut%20charcoal%20briquettes.%20Could%20you%20please%20share%20your%20product%20catalog%2C%20specifications%2C%20MOQ%2C%20and%20price%20quotation%3F%0A%0AThank%20you."
+           target="_blank" rel="noopener"
+           class="btn-gold w-full py-2.5 rounded-full text-sm text-center block font-semibold">
+            Chat Now →
+        </a>
+    </div>
+</div>
 
 
 <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-5 px-6 lg:px-14"
@@ -566,6 +644,66 @@
         </span>
                     </div>
 </div>
+
+
+
+<section class="py-10 bg-void-2 border-b border-gold/10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-14">
+        <p class="section-tag text-center mb-8" data-aos="fade-up">Tersertifikasi & Diakui Internasional</p>
+
+        <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
+            
+                        <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="0">
+                <span class="text-2xl">🏅</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">ISO 9001:2015</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">Quality Management</div>
+                </div>
+            </div>
+                        <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="60">
+                <span class="text-2xl">☪️</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">Halal Certified</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">MUI Indonesia</div>
+                </div>
+            </div>
+                        <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="120">
+                <span class="text-2xl">🔬</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">SGS Tested</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">Lab Analysis</div>
+                </div>
+            </div>
+                        <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="180">
+                <span class="text-2xl">📋</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">BPOM</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">Registered</div>
+                </div>
+            </div>
+                        <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="240">
+                <span class="text-2xl">🌿</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">Eco-Friendly</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">Sustainable Process</div>
+                </div>
+            </div>
+                        <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="300">
+                <span class="text-2xl">🚢</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">Export Ready</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">Phytosanitary Cert</div>
+                </div>
+            </div>
+                    </div>
+    </div>
+</section>
 
 
 
@@ -1476,7 +1614,7 @@
 <section id="export" class="py-14 lg:py-28 bg-void-2">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
             <div data-aos="fade-right">
                 <span class="section-tag">Jangkauan Global</span>
                 <div class="gold-line w-14 my-4"></div>
@@ -1486,73 +1624,125 @@
                 </h2>
             </div>
             <p class="text-gray-600 text-sm max-w-xs leading-relaxed" data-aos="fade-left">
-                Dari Timur Tengah, Eropa, Amerika, hingga Asia—produk kami telah dipercaya importir di berbagai penjuru dunia.
+                Dari Timur Tengah, Eropa, Amerika, hingga Asia — produk kami dipercaya importir di seluruh penjuru dunia.
             </p>
         </div>
 
         
-        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
+        <div class="glass rounded-3xl p-4 lg:p-6 border border-gold/10 mb-10" data-aos="fade-up">
+            <div id="world-map" style="height: 380px; width: 100%;"></div>
+        </div>
+
+        
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+                        <div class="glass card-lift rounded-xl py-4 text-center"
                  data-aos="zoom-in" data-aos-delay="0">
-                <div class="text-3xl mb-2">🇸🇦</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Saudi Arabia</div>
+                <div class="text-2xl mb-1">🇸🇦</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Saudi Arabia</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="40">
-                <div class="text-3xl mb-2">🇦🇪</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">UAE</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="35">
+                <div class="text-2xl mb-1">🇦🇪</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">UAE</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="80">
-                <div class="text-3xl mb-2">🇩🇪</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Jerman</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="70">
+                <div class="text-2xl mb-1">🇩🇪</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Jerman</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="120">
-                <div class="text-3xl mb-2">🇳🇱</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Belanda</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="105">
+                <div class="text-2xl mb-1">🇳🇱</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Belanda</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="160">
-                <div class="text-3xl mb-2">🇺🇸</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Amerika</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="140">
+                <div class="text-2xl mb-1">🇺🇸</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Amerika</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="200">
-                <div class="text-3xl mb-2">🇦🇺</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Australia</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="175">
+                <div class="text-2xl mb-1">🇦🇺</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Australia</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="240">
-                <div class="text-3xl mb-2">🇯🇵</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Jepang</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="210">
+                <div class="text-2xl mb-1">🇯🇵</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Jepang</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="245">
+                <div class="text-2xl mb-1">🇰🇷</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Korea</div>
+            </div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
                  data-aos="zoom-in" data-aos-delay="280">
-                <div class="text-3xl mb-2">🇰🇷</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Korea</div>
+                <div class="text-2xl mb-1">🇲🇾</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Malaysia</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="320">
-                <div class="text-3xl mb-2">🇲🇾</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Malaysia</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="315">
+                <div class="text-2xl mb-1">🇸🇬</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Singapura</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="360">
-                <div class="text-3xl mb-2">🇸🇬</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Singapura</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="350">
+                <div class="text-2xl mb-1">🇹🇷</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Turki</div>
             </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="400">
-                <div class="text-3xl mb-2">🇹🇷</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Turki</div>
-            </div>
-                        <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="440">
-                <div class="text-3xl mb-2">🇪🇬</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">Mesir</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="385">
+                <div class="text-2xl mb-1">🇪🇬</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Mesir</div>
             </div>
                     </div>
+    </div>
+</section>
+
+
+
+<section class="py-12 bg-void border-y border-gold/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-14">
+        <p class="section-tag text-center mb-10" data-aos="fade-up">Dipercaya Importir dari Seluruh Dunia</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                                    <div class="glass card-lift rounded-2xl p-5 text-center border border-gold/10"
+                 data-aos="fade-up" data-aos-delay="0">
+                <div class="text-4xl mb-3">🇸🇦</div>
+                <div class="font-grotesk font-semibold text-white text-sm mb-1">Al-Baraka Trading</div>
+                <div class="text-gray-600 text-xs">Saudi Arabia</div>
+                <div class="flex justify-center mt-3 gap-0.5">
+                    <span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span>                </div>
+            </div>
+                        <div class="glass card-lift rounded-2xl p-5 text-center border border-gold/10"
+                 data-aos="fade-up" data-aos-delay="80">
+                <div class="text-4xl mb-3">🇩🇪</div>
+                <div class="font-grotesk font-semibold text-white text-sm mb-1">EuroGrill GmbH</div>
+                <div class="text-gray-600 text-xs">Germany</div>
+                <div class="flex justify-center mt-3 gap-0.5">
+                    <span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span>                </div>
+            </div>
+                        <div class="glass card-lift rounded-2xl p-5 text-center border border-gold/10"
+                 data-aos="fade-up" data-aos-delay="160">
+                <div class="text-4xl mb-3">🇦🇺</div>
+                <div class="font-grotesk font-semibold text-white text-sm mb-1">AussiBBQ Supplies</div>
+                <div class="text-gray-600 text-xs">Australia</div>
+                <div class="flex justify-center mt-3 gap-0.5">
+                    <span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span>                </div>
+            </div>
+                        <div class="glass card-lift rounded-2xl p-5 text-center border border-gold/10"
+                 data-aos="fade-up" data-aos-delay="240">
+                <div class="text-4xl mb-3">🇯🇵</div>
+                <div class="font-grotesk font-semibold text-white text-sm mb-1">Sakura Import Co.</div>
+                <div class="text-gray-600 text-xs">Japan</div>
+                <div class="flex justify-center mt-3 gap-0.5">
+                    <span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span><span class="text-gold text-xs">★</span>                </div>
+            </div>
+                    </div>
+
+        <p class="text-center text-gray-700 text-xs mt-8 font-grotesk" data-aos="fade-up">
+            + 70 importir lainnya dari 30+ negara
+        </p>
     </div>
 </section>
 
@@ -1816,6 +2006,45 @@
     });
 </script>
 
+<script>
+(function(){
+    const s = document.getElementById('loading-screen');
+    const p = document.getElementById('load-progress');
+    if (!s) return;
+    // Only show once per session
+    if (sessionStorage.getItem('loaded')) { s.remove(); return; }
+    setTimeout(() => { p.style.width = '100%'; }, 50);
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            s.classList.add('fade-out');
+            setTimeout(() => { s.remove(); sessionStorage.setItem('loaded','1'); }, 650);
+        }, 600);
+    });
+})();
+</script>
+
+
+<script>
+(function(){
+    function showWaPopup() {
+        const dismissed = localStorage.getItem('wa-popup-time');
+        if (dismissed && Date.now() - dismissed < 86400000) return; // 24h
+        setTimeout(() => {
+            const el = document.getElementById('wa-popup');
+            if (el) el.classList.add('show');
+        }, 5000);
+    }
+    document.addEventListener('DOMContentLoaded', showWaPopup);
+})();
+
+function closeWaPopup() {
+    const el = document.getElementById('wa-popup');
+    if (el) { el.classList.remove('show'); }
+    localStorage.setItem('wa-popup-time', Date.now());
+}
+</script>
+
+
 <div id="google_translate_element" style="display:none;visibility:hidden;"></div>
 
 <script>
@@ -1849,5 +2078,55 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jvectormap-next@3.1.1/jquery-jvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jvectormap-content@1.0.2/world-mill.js"></script>
+<script>
+$(function() {
+    const exportCountries = {
+        'SA':1,'AE':1,'DE':1,'NL':1,'US':1,'AU':1,
+        'JP':1,'KR':1,'MY':1,'SG':1,'TR':1,'EG':1,
+        'GB':1,'FR':1,'IT':1,'QA':1,'KW':1,'BH':1,
+    };
+    // Indonesia as home
+    exportCountries['ID'] = 2;
+
+    $('#world-map').vectorMap({
+        map: 'world_mill',
+        backgroundColor: 'transparent',
+        series: {
+            regions: [{
+                values: exportCountries,
+                scale: { '1': '#D4AF37', '2': '#F5C842' },
+                normalizeFunction: 'polynomial',
+            }]
+        },
+        regionStyle: {
+            initial: {
+                fill: '#1E1E1E',
+                'fill-opacity': 1,
+                stroke: '#333',
+                'stroke-width': 0.4,
+                'stroke-opacity': 1,
+            },
+            hover: { 'fill-opacity': 0.85, cursor: 'pointer' },
+        },
+        onRegionTipShow: function(e, el, code) {
+            const names = {
+                'SA':'Saudi Arabia','AE':'UAE','DE':'Jerman','NL':'Belanda',
+                'US':'Amerika Serikat','AU':'Australia','JP':'Jepang','KR':'Korea Selatan',
+                'MY':'Malaysia','SG':'Singapura','TR':'Turki','EG':'Mesir',
+                'GB':'Inggris','FR':'Prancis','IT':'Italia','QA':'Qatar',
+                'KW':'Kuwait','BH':'Bahrain','ID':'Indonesia 🏠 (Home)',
+            };
+            if (exportCountries[code]) {
+                el.html('<b>' + (names[code] || el.html()) + '</b><br><small style="color:#D4AF37">✓ Export Destination</small>');
+            } else {
+                e.preventDefault();
+            }
+        },
+    });
+});
+</script>
 </body>
 </html>

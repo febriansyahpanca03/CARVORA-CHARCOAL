@@ -136,6 +136,40 @@
 
 
 {{-- ══════════════════════════════════════════════════════════════
+     §2.5  CERTIFICATION STRIP
+══════════════════════════════════════════════════════════════ --}}
+<section class="py-10 bg-void-2 border-b border-gold/10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-14">
+        <p class="section-tag text-center mb-8" data-aos="fade-up">Tersertifikasi & Diakui Internasional</p>
+
+        <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
+            @php
+            $certs = [
+                ['icon'=>'🏅','name'=>'ISO 9001:2015','sub'=>'Quality Management'],
+                ['icon'=>'☪️','name'=>'Halal Certified','sub'=>'MUI Indonesia'],
+                ['icon'=>'🔬','name'=>'SGS Tested','sub'=>'Lab Analysis'],
+                ['icon'=>'📋','name'=>'BPOM','sub'=>'Registered'],
+                ['icon'=>'🌿','name'=>'Eco-Friendly','sub'=>'Sustainable Process'],
+                ['icon'=>'🚢','name'=>'Export Ready','sub'=>'Phytosanitary Cert'],
+            ];
+            @endphp
+
+            @foreach($certs as $cert)
+            <div class="glass border border-gold/15 hover:border-gold/40 rounded-2xl px-5 py-4 flex items-center gap-3 transition-all hover:-translate-y-1 card-lift"
+                 data-aos="zoom-in" data-aos-delay="{{ $loop->index * 60 }}">
+                <span class="text-2xl">{{ $cert['icon'] }}</span>
+                <div>
+                    <div class="font-grotesk font-semibold text-white text-sm leading-none">{{ $cert['name'] }}</div>
+                    <div class="text-gray-600 text-[10px] mt-1 tracking-wide">{{ $cert['sub'] }}</div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+{{-- ══════════════════════════════════════════════════════════════
      §3  ABOUT — split with big number accent
 ══════════════════════════════════════════════════════════════ --}}
 <section id="about" class="py-14 lg:py-28 bg-void relative overflow-hidden">
@@ -574,12 +608,12 @@
 
 
 {{-- ══════════════════════════════════════════════════════════════
-     §8  EXPORT MAP — countries grid
+     §8  EXPORT MAP — interactive world map
 ══════════════════════════════════════════════════════════════ --}}
 <section id="export" class="py-14 lg:py-28 bg-void-2">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
-        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
             <div data-aos="fade-right">
                 <span class="section-tag">Jangkauan Global</span>
                 <div class="gold-line w-14 my-4"></div>
@@ -589,10 +623,16 @@
                 </h2>
             </div>
             <p class="text-gray-600 text-sm max-w-xs leading-relaxed" data-aos="fade-left">
-                Dari Timur Tengah, Eropa, Amerika, hingga Asia—produk kami telah dipercaya importir di berbagai penjuru dunia.
+                Dari Timur Tengah, Eropa, Amerika, hingga Asia — produk kami dipercaya importir di seluruh penjuru dunia.
             </p>
         </div>
 
+        {{-- Interactive Map --}}
+        <div class="glass rounded-3xl p-4 lg:p-6 border border-gold/10 mb-10" data-aos="fade-up">
+            <div id="world-map" style="height: 380px; width: 100%;"></div>
+        </div>
+
+        {{-- Country flags grid below map --}}
         @php
         $countries = [
             ['🇸🇦','Saudi Arabia'],['🇦🇪','UAE'],['🇩🇪','Jerman'],['🇳🇱','Belanda'],
@@ -600,16 +640,51 @@
             ['🇲🇾','Malaysia'],['🇸🇬','Singapura'],['🇹🇷','Turki'],['🇪🇬','Mesir'],
         ];
         @endphp
-
-        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
             @foreach($countries as [$flag,$name])
-            <div class="glass card-lift rounded-2xl py-5 text-center"
-                 data-aos="zoom-in" data-aos-delay="{{ $loop->index * 40 }}">
-                <div class="text-3xl mb-2">{{ $flag }}</div>
-                <div class="text-gray-600 text-xs font-grotesk tracking-wide">{{ $name }}</div>
+            <div class="glass card-lift rounded-xl py-4 text-center"
+                 data-aos="zoom-in" data-aos-delay="{{ $loop->index * 35 }}">
+                <div class="text-2xl mb-1">{{ $flag }}</div>
+                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">{{ $name }}</div>
             </div>
             @endforeach
         </div>
+    </div>
+</section>
+
+
+{{-- ══════════════════════════════════════════════════════════════
+     §8.5  PARTNERSHIP / TRUSTED BY
+══════════════════════════════════════════════════════════════ --}}
+<section class="py-12 bg-void border-y border-gold/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-14">
+        <p class="section-tag text-center mb-10" data-aos="fade-up">Dipercaya Importir dari Seluruh Dunia</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+            @php
+            $partners = [
+                ['🇸🇦','Al-Baraka Trading','Saudi Arabia'],
+                ['🇩🇪','EuroGrill GmbH','Germany'],
+                ['🇦🇺','AussiBBQ Supplies','Australia'],
+                ['🇯🇵','Sakura Import Co.','Japan'],
+            ];
+            @endphp
+            @foreach($partners as [$flag,$company,$country])
+            <div class="glass card-lift rounded-2xl p-5 text-center border border-gold/10"
+                 data-aos="fade-up" data-aos-delay="{{ $loop->index * 80 }}">
+                <div class="text-4xl mb-3">{{ $flag }}</div>
+                <div class="font-grotesk font-semibold text-white text-sm mb-1">{{ $company }}</div>
+                <div class="text-gray-600 text-xs">{{ $country }}</div>
+                <div class="flex justify-center mt-3 gap-0.5">
+                    @for($i=0;$i<5;$i++)<span class="text-gold text-xs">★</span>@endfor
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <p class="text-center text-gray-700 text-xs mt-8 font-grotesk" data-aos="fade-up">
+            + 70 importir lainnya dari 30+ negara
+        </p>
     </div>
 </section>
 
@@ -757,3 +832,65 @@
 </section>
 
 @endsection
+
+@push('head')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jvectormap-next@3.1.1/jquery-jvectormap.min.css">
+<style>
+    .jvectormap-container { background: transparent !important; }
+    .jvectormap-tip { background: #1A1A1A !important; border: 1px solid rgba(212,175,55,.3) !important; color: #fff !important; font-family: 'Space Grotesk',sans-serif !important; font-size: 12px !important; padding: 6px 12px !important; border-radius: 8px !important; }
+    .jvectormap-zoomin, .jvectormap-zoomout { background: rgba(212,175,55,.15) !important; border: 1px solid rgba(212,175,55,.3) !important; color: #D4AF37 !important; border-radius: 6px !important; }
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jvectormap-next@3.1.1/jquery-jvectormap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jvectormap-content@1.0.2/world-mill.js"></script>
+<script>
+$(function() {
+    const exportCountries = {
+        'SA':1,'AE':1,'DE':1,'NL':1,'US':1,'AU':1,
+        'JP':1,'KR':1,'MY':1,'SG':1,'TR':1,'EG':1,
+        'GB':1,'FR':1,'IT':1,'QA':1,'KW':1,'BH':1,
+    };
+    // Indonesia as home
+    exportCountries['ID'] = 2;
+
+    $('#world-map').vectorMap({
+        map: 'world_mill',
+        backgroundColor: 'transparent',
+        series: {
+            regions: [{
+                values: exportCountries,
+                scale: { '1': '#D4AF37', '2': '#F5C842' },
+                normalizeFunction: 'polynomial',
+            }]
+        },
+        regionStyle: {
+            initial: {
+                fill: '#1E1E1E',
+                'fill-opacity': 1,
+                stroke: '#333',
+                'stroke-width': 0.4,
+                'stroke-opacity': 1,
+            },
+            hover: { 'fill-opacity': 0.85, cursor: 'pointer' },
+        },
+        onRegionTipShow: function(e, el, code) {
+            const names = {
+                'SA':'Saudi Arabia','AE':'UAE','DE':'Jerman','NL':'Belanda',
+                'US':'Amerika Serikat','AU':'Australia','JP':'Jepang','KR':'Korea Selatan',
+                'MY':'Malaysia','SG':'Singapura','TR':'Turki','EG':'Mesir',
+                'GB':'Inggris','FR':'Prancis','IT':'Italia','QA':'Qatar',
+                'KW':'Kuwait','BH':'Bahrain','ID':'Indonesia 🏠 (Home)',
+            };
+            if (exportCountries[code]) {
+                el.html('<b>' + (names[code] || el.html()) + '</b><br><small style="color:#D4AF37">✓ Export Destination</small>');
+            } else {
+                e.preventDefault();
+            }
+        },
+    });
+});
+</script>
+@endpush
