@@ -770,6 +770,147 @@
 
 
 {{-- ══════════════════════════════════════════════════════════════
+     §9.5  PRODUCT SPECS TABLE
+══════════════════════════════════════════════════════════════ --}}
+<section class="py-14 lg:py-28 bg-void-2">
+    <div class="max-w-7xl mx-auto px-6 lg:px-14">
+
+        <div class="text-center mb-14" data-aos="fade-up">
+            <span class="section-tag">Spesifikasi Teknis</span>
+            <div class="gold-line mx-auto my-4"></div>
+            <h2 class="display-lg text-white">
+                Spesifikasi <span class="shimmer">Produk</span>
+            </h2>
+            <p class="text-gray-500 text-sm mt-4 max-w-xl mx-auto">
+                Data teknis sesuai standar ekspor internasional. Tersedia Certificate of Analysis (COA) untuk setiap pengiriman.
+            </p>
+        </div>
+
+        {{-- Specs Table --}}
+        <div class="glass rounded-2xl overflow-hidden border border-gold/10" data-aos="fade-up">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-gold/20" style="background:rgba(212,175,55,.08)">
+                            <th class="text-left px-5 py-4 font-grotesk font-semibold text-gold text-xs tracking-widest uppercase">Parameter</th>
+                            <th class="px-4 py-4 font-grotesk font-semibold text-white text-xs tracking-wide">BBQ</th>
+                            <th class="px-4 py-4 font-grotesk font-semibold text-white text-xs tracking-wide">Shisha</th>
+                            <th class="px-4 py-4 font-grotesk font-semibold text-white text-xs tracking-wide">Hexagonal</th>
+                            <th class="px-4 py-4 font-grotesk font-semibold text-white text-xs tracking-wide">Finger</th>
+                            <th class="px-4 py-4 font-grotesk font-semibold text-white text-xs tracking-wide">Cube</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $specs = [
+                            ['Calorific Value',   '7,800 kcal/kg', '7,200 kcal/kg', '7,600 kcal/kg', '7,400 kcal/kg', '7,500 kcal/kg', true],
+                            ['Fixed Carbon',      '≥ 78%',          '≥ 75%',          '≥ 77%',          '≥ 76%',          '≥ 76%',          false],
+                            ['Moisture Content',  '≤ 5%',           '≤ 4%',           '≤ 5%',           '≤ 5%',           '≤ 5%',           true],
+                            ['Ash Content',       '≤ 3%',           '≤ 2.5%',         '≤ 3%',           '≤ 3%',           '≤ 3%',           false],
+                            ['Volatile Matter',   '≤ 15%',          '≤ 18%',          '≤ 15%',          '≤ 16%',          '≤ 15%',          true],
+                            ['Burning Time',      '3–4 jam',       '2–3 jam',        '3–4 jam',       '2–3 jam',       '3–4 jam',        false],
+                            ['Smoke',             'Minimal',       'Hampir Nol',    'Minimal',       'Minimal',       'Minimal',        true],
+                            ['Size/Shape',        'Custom',        '25×25×25 mm',   'Hexagonal',     '35×10×10 mm',   '25×25×25 mm',   false],
+                            ['Packing',           '10 kg carton',  '3 kg box',       '10 kg carton',  '10 kg carton',  '10 kg carton',  true],
+                        ];
+                        @endphp
+                        @foreach($specs as [$param, $bbq, $shisha, $hex, $finger, $cube, $alt])
+                        <tr class="border-b border-white/5 {{ $alt ? '' : 'bg-white/[.015]' }} hover:bg-gold/5 transition-colors">
+                            <td class="px-5 py-3.5 text-gray-400 font-grotesk font-medium">{{ $param }}</td>
+                            <td class="px-4 py-3.5 text-center text-white">{{ $bbq }}</td>
+                            <td class="px-4 py-3.5 text-center text-white">{{ $shisha }}</td>
+                            <td class="px-4 py-3.5 text-center text-white">{{ $hex }}</td>
+                            <td class="px-4 py-3.5 text-center text-white">{{ $finger }}</td>
+                            <td class="px-4 py-3.5 text-center text-white">{{ $cube }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="text-center text-gray-700 text-xs mt-5 font-grotesk" data-aos="fade-up">
+            * Spesifikasi dapat bervariasi. COA tersedia untuk setiap batch pengiriman. Custom spec tersedia sesuai permintaan buyer.
+        </p>
+    </div>
+</section>
+
+
+{{-- ══════════════════════════════════════════════════════════════
+     §9.6  FAQ
+══════════════════════════════════════════════════════════════ --}}
+<section class="py-14 lg:py-28 bg-void">
+    <div class="max-w-4xl mx-auto px-6 lg:px-14">
+
+        <div class="text-center mb-14" data-aos="fade-up">
+            <span class="section-tag">FAQ</span>
+            <div class="gold-line mx-auto my-4"></div>
+            <h2 class="display-lg text-white">
+                Pertanyaan yang <span class="shimmer">Sering Ditanya</span>
+            </h2>
+        </div>
+
+        @php
+        $faqs = [
+            ['Berapa Minimum Order Quantity (MOQ)?',
+             'MOQ kami adalah 1 x 20 FCL (sekitar 18–20 MT) untuk ekspor. Untuk trial order, tersedia dari 1 MT dengan biaya pengiriman yang disesuaikan.'],
+            ['Apa saja metode pembayaran yang diterima?',
+             'Kami menerima T/T (Bank Transfer), L/C at Sight, dan Western Union. Untuk buyer baru, biasanya kami minta 30% DP dan 70% sebelum pengiriman.'],
+            ['Berapa lama waktu produksi dan pengiriman?',
+             'Lead time produksi 14–21 hari kerja setelah DP diterima. Pengiriman dari Pelabuhan Jakarta/Surabaya ke berbagai negara biasanya 10–30 hari tergantung tujuan.'],
+            ['Apakah tersedia sample gratis?',
+             'Ya! Kami menyediakan sample gratis (sekitar 2 kg) untuk buyer serius. Biaya pengiriman sample ditanggung buyer. Hubungi kami via WhatsApp untuk request sample.'],
+            ['Dokumen apa saja yang tersedia untuk ekspor?',
+             'Kami menyediakan: Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin (SKA), Phytosanitary Certificate, Fumigation Certificate, dan Certificate of Analysis (COA).'],
+            ['Apakah produk bisa di-custom sesuai kebutuhan?',
+             'Tentu! Kami melayani custom shape, custom size, custom packaging, dan private label sesuai kebutuhan buyer. Minimum order untuk custom biasanya 5 MT.'],
+            ['Apa bahan baku yang digunakan?',
+             '100% tempurung kelapa pilihan dari Indonesia. Tidak menggunakan kayu, batu bara, atau bahan kimia apapun. Proses produksi ramah lingkungan dan berkelanjutan.'],
+        ];
+        @endphp
+
+        <div class="space-y-3">
+            @foreach($faqs as $i => [$q, $a])
+            <div class="glass border border-gold/10 rounded-2xl overflow-hidden card-lift"
+                 data-aos="fade-up" data-aos-delay="{{ $i * 50 }}"
+                 x-data="{ open: {{ $i === 0 ? 'true' : 'false' }} }">
+                <button @click="open = !open"
+                        class="w-full flex items-center justify-between px-6 py-5 text-left">
+                    <span class="font-grotesk font-semibold text-white text-sm lg:text-base pr-4">{{ $q }}</span>
+                    <div class="w-7 h-7 rounded-full border border-gold/30 flex items-center justify-center flex-shrink-0 transition-transform duration-300"
+                         :class="open ? 'rotate-45 border-gold bg-gold/10' : ''">
+                        <svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                        </svg>
+                    </div>
+                </button>
+                <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 -translate-y-2"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0"
+                     class="px-6 pb-5 border-t border-gold/10">
+                    <p class="text-gray-500 text-sm leading-relaxed pt-4">{{ $a }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <div class="text-center mt-10" data-aos="fade-up">
+            <p class="text-gray-600 text-sm mb-4">Masih ada pertanyaan lain?</p>
+            <a href="https://wa.me/6282125573419?text=Hello%20Carvora%20Charcoal%2C%0A%0AI%20found%20your%20website%20and%20I%27m%20interested%20in%20your%20coconut%20charcoal%20briquettes.%20Could%20you%20please%20share%20your%20product%20catalog%2C%20specifications%2C%20MOQ%2C%20and%20price%20quotation%3F%0A%0AThank%20you."
+               target="_blank" rel="noopener"
+               class="btn-primary px-8 py-3 rounded-full text-sm inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Tanya via WhatsApp
+            </a>
+        </div>
+    </div>
+</section>
+
+
+{{-- ══════════════════════════════════════════════════════════════
      §10  CTA — full screen bold
 ══════════════════════════════════════════════════════════════ --}}
 <section id="contact" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-void noise">

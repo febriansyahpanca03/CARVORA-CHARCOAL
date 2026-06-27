@@ -12,6 +12,25 @@
     <link rel="shortcut icon" type="image/png" href="/logo.png">
     <link rel="apple-touch-icon" href="/logo.png">
 
+    {{-- Open Graph / Social Share --}}
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://carvoracharcoal.my.id/">
+    <meta property="og:title"       content="Carvora Charcoal – Premium Coconut Shell Charcoal Indonesia">
+    <meta property="og:description" content="Produsen briket arang tempurung kelapa premium dari Indonesia. 100% natural, ISO certified, ekspor ke 30+ negara.">
+    <meta property="og:image"       content="https://carvoracharcoal.my.id/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height"content="630">
+    <meta property="og:locale"      content="id_ID">
+    <meta name="twitter:card"       content="summary_large_image">
+    <meta name="twitter:title"      content="Carvora Charcoal – Premium Coconut Shell Charcoal">
+    <meta name="twitter:description"content="Produsen briket arang tempurung kelapa premium dari Indonesia.">
+    <meta name="twitter:image"      content="https://carvoracharcoal.my.id/og.png">
+
+    {{-- SEO --}}
+    <meta name="keywords" content="briket arang, charcoal briquette, coconut shell charcoal, arang tempurung kelapa, charcoal exporter indonesia, BBQ charcoal, shisha charcoal">
+    <meta name="author"   content="Carvora Charcoal Indonesia">
+    <link rel="canonical" href="https://carvoracharcoal.my.id/">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -254,6 +273,38 @@
             animation: wa-pulse 2.5s infinite;
         }
 
+        /* ── Sticky Mobile CTA ──────────────────────── */
+        .sticky-cta {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            z-index: 990; padding: 10px 16px 14px;
+            background: rgba(8,8,8,.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(212,175,55,.15);
+        }
+        @media (min-width: 1024px) { .sticky-cta { display: none !important; } }
+        @media (max-width: 1023px) { body { padding-bottom: 76px; } }
+
+        /* ── Scroll to Top ───────────────────────────── */
+        #scroll-top {
+            position: fixed; bottom: 90px; right: 22px; z-index: 990;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: linear-gradient(135deg,#D4AF37,#F5C842);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; border: none;
+            transition: all .3s ease;
+            opacity: 0; transform: translateY(12px);
+            pointer-events: none;
+        }
+        #scroll-top.show {
+            opacity: 1; transform: translateY(0);
+            pointer-events: auto;
+        }
+        #scroll-top:hover {
+            box-shadow: 0 0 20px rgba(212,175,55,.5);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 1023px) { #scroll-top { bottom: 96px; right: 16px; } }
+
         /* ── Loading Screen ──────────────────────────── */
         #loading-screen {
             position: fixed; inset: 0; z-index: 99999;
@@ -458,6 +509,35 @@
         </div>
     </div>
 </footer>
+
+{{-- ══ STICKY MOBILE CTA ══ --}}
+<div class="sticky-cta">
+    <div class="flex gap-3">
+        <a href="https://wa.me/6282125573419?text=Hello%20Carvora%20Charcoal%2C%0A%0AI%20found%20your%20website%20and%20I%27m%20interested%20in%20your%20coconut%20charcoal%20briquettes.%20Could%20you%20please%20share%20your%20product%20catalog%2C%20specifications%2C%20MOQ%2C%20and%20price%20quotation%3F%0A%0AThank%20you."
+           target="_blank" rel="noopener"
+           class="flex-1 btn-primary py-3 rounded-full text-sm font-semibold flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat WA
+        </a>
+        <a href="#contact"
+           class="flex-1 btn-ghost py-3 rounded-full text-sm font-semibold text-center flex items-center justify-center">
+            Minta Sample
+        </a>
+    </div>
+</div>
+
+{{-- ══ SCROLL TO TOP ══ --}}
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <svg class="w-4 h-4 text-void" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+    </svg>
+</button>
+<script>
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('scroll-top');
+    if (btn) btn.classList.toggle('show', window.scrollY > 400);
+});
+</script>
 
 {{-- WA Float --}}
 <a href="https://wa.me/6282125573419?text=Hello%20Carvora%20Charcoal%2C%0A%0AI%20found%20your%20website%20and%20I%27m%20interested%20in%20your%20coconut%20charcoal%20briquettes.%20Could%20you%20please%20share%20your%20product%20catalog%2C%20specifications%2C%20MOQ%2C%20and%20price%20quotation%3F%0A%0AThank%20you." target="_blank" rel="noopener" class="wa-float">
