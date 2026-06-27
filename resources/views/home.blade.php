@@ -30,10 +30,10 @@
             <div class="lg:col-span-7" data-aos="fade-right" data-aos-delay="80">
 
                 {{-- Oversized headline --}}
-                <h1 class="mb-2" style="font-family:'Space Grotesk',sans-serif; font-weight:700; line-height:.95; letter-spacing:-.03em; font-size:clamp(3rem,15vw,8.5rem);">
+                <h1 class="mb-2" style="font-family:'Space Grotesk',sans-serif; font-weight:700; line-height:.95; letter-spacing:-.03em; font-size:clamp(2.8rem,11vw,8.5rem);">
                     <span class="text-white block">CARVORA</span>
                     <span class="gold-stroke block">CHARCOAL</span>
-                    <span class="block" style="font-size:clamp(1rem,4vw,3rem); font-weight:300; letter-spacing:.02em; font-family:'Inter',sans-serif; color:#555; margin-top:.3em;">
+                    <span class="block" style="font-size:clamp(.9rem,3.5vw,3rem); font-weight:300; letter-spacing:.05em; font-family:'Inter',sans-serif; color:#555; margin-top:.3em;">
                         INDONESIA
                     </span>
                 </h1>

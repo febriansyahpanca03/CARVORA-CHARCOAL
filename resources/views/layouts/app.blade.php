@@ -39,7 +39,10 @@
 
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
+        body { overflow-x: hidden; max-width: 100vw; position: relative; }
+        section, footer, nav { max-width: 100vw; overflow-x: hidden; }
+        [data-aos] { overflow-x: hidden; }
 
         body {
             background: #080808;
@@ -169,21 +172,21 @@
 
         /* ── Oversized display type ──────────────────── */
         .display-xl {
-            font-size: clamp(3.5rem, 9vw, 8.5rem);
+            font-size: clamp(2.2rem, 8vw, 8.5rem);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             line-height: .95;
             letter-spacing: -.03em;
         }
         .display-lg {
-            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-size: clamp(1.8rem, 5vw, 5.5rem);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             line-height: 1;
             letter-spacing: -.025em;
         }
         .display-md {
-            font-size: clamp(1.75rem, 4vw, 3.5rem);
+            font-size: clamp(1.4rem, 3.5vw, 3.5rem);
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             line-height: 1.1;
