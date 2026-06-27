@@ -855,7 +855,7 @@
             ['Berapa Minimum Order Quantity (MOQ)?',
              'MOQ kami adalah 1 x 20 FCL (sekitar 18–20 MT) untuk ekspor. Untuk trial order, tersedia dari 1 MT dengan biaya pengiriman yang disesuaikan.'],
             ['Apa saja metode pembayaran yang diterima?',
-             'Kami menerima T/T (Bank Transfer), L/C at Sight, dan Western Union. Untuk buyer baru, biasanya kami minta 30% DP dan 70% sebelum pengiriman.'],
+             'Kami menerima berbagai metode pembayaran: T/T (Bank Transfer), L/C at Sight, Western Union, serta pembayaran via Cryptocurrency — USDT (TRC20/ERC20) dan Bitcoin (BTC). Untuk buyer baru, biasanya kami minta 30% DP dan 70% sebelum pengiriman.'],
             ['Berapa lama waktu produksi dan pengiriman?',
              'Lead time produksi 14–21 hari kerja setelah DP diterima. Pengiriman dari Pelabuhan Jakarta/Surabaya ke berbagai negara biasanya 10–30 hari tergantung tujuan.'],
             ['Apakah tersedia sample gratis?',
