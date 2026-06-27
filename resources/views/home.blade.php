@@ -68,29 +68,36 @@
                 </div>
             </div>
 
-            {{-- ── Right visual — hidden on mobile, shown on lg ── --}}
-            <div class="hidden lg:block lg:col-span-5 relative" data-aos="fade-left" data-aos-delay="160">
+            {{-- ── Right visual — full bleed ke kanan viewport ── --}}
+            <div class="hidden lg:block lg:col-span-5 relative -mr-14" data-aos="fade-left" data-aos-delay="160">
 
-                {{-- outer ring decoration --}}
-                <div class="absolute -inset-4 rounded-3xl border border-gold/10 pointer-events-none"></div>
-                <div class="absolute -inset-8 rounded-3xl border border-gold/5  pointer-events-none"></div>
-
-                {{-- main image --}}
-                <div class="img-zoom rounded-2xl overflow-hidden relative">
-                    <img src="https://loremflickr.com/600/750/charcoal,briquette?lock=10"
+                {{-- Full-bleed image — rounded hanya di kiri --}}
+                <div class="img-zoom rounded-l-2xl overflow-hidden relative"
+                     style="height: calc(100vh - 120px); min-height: 520px; max-height: 750px;">
+                    <img src="https://loremflickr.com/800/1000/charcoal,fire,coal?lock=10"
                          alt="Briket Arang Premium"
-                         class="w-full aspect-[4/5] object-cover"
-                         style="filter: brightness(.55) saturate(.7);">
-                    <div class="absolute inset-0"
-                         style="background: linear-gradient(135deg, rgba(212,175,55,.08) 0%, transparent 60%, rgba(8,8,8,.7) 100%);">
-                    </div>
-                    <div class="absolute top-5 left-5 glass rounded-xl px-4 py-2">
+                         class="w-full h-full object-cover object-center"
+                         style="filter: brightness(.6) saturate(.75);">
+
+                    {{-- gradient overlay kiri (blend ke background) --}}
+                    <div class="absolute inset-0 pointer-events-none"
+                         style="background: linear-gradient(to right, rgba(8,8,8,.7) 0%, rgba(8,8,8,.2) 30%, transparent 60%),
+                                            linear-gradient(to top, rgba(8,8,8,.6) 0%, transparent 40%);"></div>
+
+                    {{-- badge top left --}}
+                    <div class="absolute top-6 left-6 glass rounded-xl px-4 py-2">
                         <span class="section-tag">Premium Grade</span>
+                    </div>
+
+                    {{-- badge bottom right --}}
+                    <div class="absolute bottom-6 right-6 glass rounded-xl px-4 py-2.5 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        <span class="section-tag text-green-400">Export Ready</span>
                     </div>
                 </div>
 
-                {{-- floating cards — desktop only --}}
-                <div class="glass card-lift absolute -bottom-6 -left-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl">
+                {{-- floating card ISO — kiri bawah --}}
+                <div class="glass card-lift absolute bottom-16 -left-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl z-10">
                     <div class="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
                         <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -102,9 +109,12 @@
                     </div>
                 </div>
 
-                <div class="glass card-lift absolute -top-5 right-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl">
+                {{-- floating card Eco — kiri atas --}}
+                <div class="glass card-lift absolute top-16 -left-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl z-10">
                     <div class="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+                        <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+                        </svg>
                     </div>
                     <div>
                         <div class="text-white text-sm font-semibold font-grotesk">Eco-Friendly</div>
