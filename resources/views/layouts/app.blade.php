@@ -44,6 +44,33 @@
         section, footer, nav { max-width: 100vw; overflow-x: hidden; }
         [data-aos] { overflow-x: hidden; }
 
+        /* ── Hide Google Translate default UI ───────── */
+        .goog-te-banner-frame, .goog-te-balloon-frame { display:none !important; }
+        .goog-te-gadget { display:none !important; }
+        body { top: 0 !important; }
+        .VIpgJd-ZVi9od-ORHb-OEVmcd { display:none !important; }
+        .goog-te-spinner-pos { display:none !important; }
+        .skiptranslate { display:none !important; }
+
+        /* ── Lang toggle button ─────────────────────── */
+        .lang-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            padding: 4px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all .25s ease;
+            border: none;
+            background: transparent;
+            color: #666;
+        }
+        .lang-btn.active {
+            background: linear-gradient(135deg, #D4AF37, #F5C842);
+            color: #080808;
+        }
+
         body {
             background: #080808;
             color: #fff;
@@ -252,6 +279,12 @@
             @endforeach
         </div>
 
+        {{-- Language Toggle --}}
+        <div class="hidden lg:flex items-center gap-1 border border-gold/20 rounded-full p-1">
+            <button class="lang-btn active" id="btn-id" onclick="setLang('id')">ID</button>
+            <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+
         {{-- CTA --}}
         <div class="hidden lg:flex items-center gap-3">
             <a href="#contact" class="btn-ghost px-5 py-2 rounded-full text-sm">Kontak</a>
@@ -272,6 +305,11 @@
             <a href="{{ $h }}" @click="nav=false" class="text-gray-400 hover:text-gold transition-colors">{{ $l }}</a>
             @endforeach
             <a href="#contact" class="btn-primary px-6 py-2.5 rounded-full text-center mt-2">Minta Sample Gratis</a>
+                {{-- Mobile lang toggle --}}
+                <div class="flex items-center gap-1 border border-gold/20 rounded-full p-1 w-fit mt-2">
+                    <button class="lang-btn active" id="btn-id-m" onclick="setLang('id')">ID</button>
+                    <button class="lang-btn" id="btn-en-m" onclick="setLang('en')">EN</button>
+                </div>
         </div>
     </div>
 </nav>
@@ -372,6 +410,40 @@
         obs.observe(el);
     });
 </script>
+{{-- ════ Google Translate (hidden) + Lang Toggle ════ --}}
+<div id="google_translate_element" style="display:none;visibility:hidden;"></div>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'en,id',
+        autoDisplay: false,
+    }, 'google_translate_element');
+}
+
+function setLang(lang) {
+    const combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+        combo.value = lang;
+        combo.dispatchEvent(new Event('change'));
+    }
+    localStorage.setItem('siteLang', lang);
+    // Update all toggle buttons
+    document.querySelectorAll('[id^="btn-"]').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#btn-' + lang).forEach(b => b.classList.add('active'));
+}
+
+// On load: restore saved language
+document.addEventListener('DOMContentLoaded', function () {
+    const saved = localStorage.getItem('siteLang') || 'id';
+    if (saved === 'en') {
+        setTimeout(() => setLang('en'), 1200);
+    }
+});
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
 @stack('scripts')
 </body>
 </html>
