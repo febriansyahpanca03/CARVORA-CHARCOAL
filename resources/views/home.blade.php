@@ -637,7 +637,7 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" class="lg:pr-16">
                 <span class="section-tag">Jangkauan Global</span>
                 <div class="gold-line w-14 my-4"></div>
                 <h2 class="display-lg text-white">
@@ -719,7 +719,7 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
         <div class="flex justify-between items-end mb-16">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" class="lg:pr-16">
                 <span class="section-tag">Blog & Info</span>
                 <div class="gold-line w-14 my-4"></div>
                 <h2 class="display-lg text-white">
