@@ -411,7 +411,7 @@
 
         {{-- Section header --}}
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
-            <div data-aos="fade-right">
+            <div data-aos="fade-right" class="lg:pr-16">
                 <span class="section-tag">Varian Produk</span>
                 <div class="gold-line w-14 my-4"></div>
                 <h2 class="display-lg text-white">
