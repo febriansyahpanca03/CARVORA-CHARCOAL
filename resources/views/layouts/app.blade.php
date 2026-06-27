@@ -308,9 +308,10 @@
 
         /* ── WA Float — mobile position above sticky bar ── */
         @media (max-width: 1023px) {
-            .wa-float { bottom: calc(106px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; transition: opacity .3s ease !important; }
-            #wa-popup { bottom: calc(184px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; width: 260px !important; }
-            #scroll-top { bottom: calc(108px + env(safe-area-inset-bottom, 0px)) !important; right: 64px !important; }
+            .wa-float { display: none !important; }
+            #wa-popup { display: none !important; }
+            .wa-toggle-tab { display: none !important; }
+            #scroll-top { bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important; right: 16px !important; }
         }
 
         /* ── Hero mobile background ──────────────────── */
@@ -679,7 +680,7 @@ window.addEventListener('scroll', function() {
 
 {{-- WA Toggle Tab (kiri layar) --}}
 <button @click="waHidden = !waHidden"
-        class="fixed z-[997] flex items-center gap-1 transition-all duration-300"
+        class="wa-toggle-tab fixed z-[997] flex items-center gap-1 transition-all duration-300"
         style="bottom: calc(116px + env(safe-area-inset-bottom, 0px)); left: 0;
                background: rgba(15,15,15,.92); backdrop-filter:blur(8px);
                border: 1px solid rgba(37,211,102,.25); border-left: none;
