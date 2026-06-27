@@ -426,7 +426,7 @@
         @php
         $products = [
             ['name'=>'BBQ Charcoal',       'img'=>'https://loremflickr.com/600/400/charcoal,bbq,grill?lock=31',       'tag'=>'TERLARIS', 'cal'=>'7800 kcal/kg', 'desc'=>'Kalori tinggi, nyala lama, cocok untuk semua jenis grill outdoor maupun indoor.'],
-            ['name'=>'Shisha Charcoal',    'img'=>'https://loremflickr.com/600/400/charcoal,hookah,shisha?lock=42',    'tag'=>'POPULER',  'cal'=>'7200 kcal/kg', 'desc'=>'Pembakaran merata tanpa asap dan aroma—tidak mengganggu cita rasa tembakau.'],
+            ['name'=>'Shisha Charcoal',    'img'=>'https://loremflickr.com/600/400/charcoal,hookah,shisha?lock=42',    'tag'=>'POPULER',  'cal'=>'7200 kcal/kg', 'desc'=>'Pembakaran merata tanpa asap dan aroma, tidak mengganggu cita rasa tembakau.'],
             ['name'=>'Hexagonal Charcoal', 'img'=>'https://loremflickr.com/600/400/charcoal,briquette,fire?lock=53',   'tag'=>'FAVORIT',  'cal'=>'7600 kcal/kg', 'desc'=>'Bentuk segi enam ikonik, mudah disusun di grill, distribusi panas optimal.'],
             ['name'=>'Finger Charcoal',    'img'=>'https://loremflickr.com/600/400/charcoal,coal,black?lock=64',       'tag'=>'BARU',     'cal'=>'7400 kcal/kg', 'desc'=>'Ukuran ramping fleksibel untuk barbecue portable dan kompor arang kecil.'],
             ['name'=>'Cube Charcoal',      'img'=>'https://loremflickr.com/600/400/charcoal,bbq,smoke?lock=75',        'tag'=>null,       'cal'=>'7500 kcal/kg', 'desc'=>'Bentuk kubus presisi, pengapian konsisten, ideal untuk memasak jangka panjang.'],
@@ -646,7 +646,7 @@
                 </h2>
             </div>
             <p class="text-gray-600 text-sm max-w-xs leading-relaxed" data-aos="fade-left">
-                Dari Timur Tengah, Eropa, Amerika, hingga Asia — produk kami dipercaya importir di seluruh penjuru dunia.
+                Dari Timur Tengah, Eropa, Amerika, hingga Asia. Produk kami dipercaya importir di seluruh penjuru dunia.
             </p>
         </div>
 
@@ -751,7 +751,7 @@
                         Cara Memilih Briket Arang yang Tepat untuk BBQ Anda
                     </h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                        Tidak semua briket diciptakan sama. Pelajari cara memilih berdasarkan kebutuhan—dari nilai kalori, waktu pembakaran, hingga kesesuaian untuk berbagai jenis grill…
+                        Tidak semua briket diciptakan sama. Pelajari cara memilih berdasarkan kebutuhan, dari nilai kalori, waktu pembakaran, hingga kesesuaian untuk berbagai jenis grill.
                     </p>
                     <a href="#" class="text-gold text-sm font-grotesk hover:underline inline-flex items-center gap-2">
                         Baca Selengkapnya
@@ -913,7 +913,7 @@
             ['Berapa Minimum Order Quantity (MOQ)?',
              'MOQ kami adalah 1 x 20 FCL (sekitar 18–20 MT) untuk ekspor. Untuk trial order, tersedia dari 1 MT dengan biaya pengiriman yang disesuaikan.'],
             ['Apa saja metode pembayaran yang diterima?',
-             'Kami menerima berbagai metode pembayaran: T/T (Bank Transfer), L/C at Sight, Western Union, serta pembayaran via Cryptocurrency — USDT (TRC20/ERC20) dan Bitcoin (BTC). Untuk buyer baru, biasanya kami minta 30% DP dan 70% sebelum pengiriman.'],
+             'Kami menerima berbagai metode pembayaran: T/T (Bank Transfer), L/C at Sight, Western Union, serta Cryptocurrency yaitu USDT (TRC20/ERC20) dan Bitcoin (BTC). Untuk buyer baru, biasanya kami minta 30% DP dan 70% sebelum pengiriman.'],
             ['Berapa lama waktu produksi dan pengiriman?',
              'Lead time produksi 14–21 hari kerja setelah DP diterima. Pengiriman dari Pelabuhan Jakarta/Surabaya ke berbagai negara biasanya 10–30 hari tergantung tujuan.'],
             ['Apakah tersedia sample gratis?',
