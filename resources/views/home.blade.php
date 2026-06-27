@@ -16,83 +16,78 @@
          style="background-image: repeating-linear-gradient(90deg, rgba(212,175,55,.04) 0 1px, transparent 1px 120px);">
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-14 w-full pt-28 pb-16">
+    <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-14 w-full pt-24 pb-12">
 
         {{-- top micro label --}}
-        <div class="flex items-center gap-3 mb-10" data-aos="fade-down">
-            <div class="w-8 h-px bg-gold opacity-60"></div>
-            <span class="section-tag">Premium Coconut Shell Charcoal</span>
+        <div class="flex items-center gap-3 mb-8" data-aos="fade-down">
+            <div class="w-6 h-px bg-gold opacity-60"></div>
+            <span class="section-tag text-[10px] lg:text-xs">Premium Coconut Shell Charcoal</span>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
             {{-- ── Left copy ───────────────────── --}}
             <div class="lg:col-span-7" data-aos="fade-right" data-aos-delay="80">
 
                 {{-- Oversized headline --}}
-                <h1 class="display-xl mb-2">
+                <h1 class="mb-2" style="font-family:'Space Grotesk',sans-serif; font-weight:700; line-height:.95; letter-spacing:-.03em; font-size:clamp(3rem,15vw,8.5rem);">
                     <span class="text-white block">CARVORA</span>
                     <span class="gold-stroke block">CHARCOAL</span>
-                    <span class="text-white block" style="font-size:clamp(1.5rem,3.5vw,3rem); font-weight:300; letter-spacing:.02em; font-family:'Inter',sans-serif; color:#555; margin-top:.3em;">
+                    <span class="block" style="font-size:clamp(1rem,4vw,3rem); font-weight:300; letter-spacing:.02em; font-family:'Inter',sans-serif; color:#555; margin-top:.3em;">
                         INDONESIA
                     </span>
                 </h1>
 
-                <p class="text-gray-500 text-base leading-relaxed max-w-lg mt-8 mb-10">
+                <p class="text-gray-500 text-sm lg:text-base leading-relaxed mt-6 mb-8 lg:mb-10">
                     Carvora Charcoal adalah produsen briket arang kelapa berkualitas tinggi dari Indonesia.
                     Dibuat dari 100% tempurung kelapa pilihan, diproses dengan standar internasional untuk
-                    menghasilkan panas maksimal, abu rendah, dan ramah lingkungan.<br><br>
+                    menghasilkan panas maksimal, abu rendah, dan ramah lingkungan.
                     Kami siap menjadi mitra terpercaya untuk kebutuhan Anda di <span class="text-gold font-medium">pasar global</span>.
                 </p>
 
-                <div class="flex flex-wrap gap-4 mb-14">
-                    <a href="#contact" class="btn-primary btn-glow px-8 py-3.5 rounded-full text-sm">
+                <div class="flex flex-wrap gap-3 mb-10">
+                    <a href="#contact" class="btn-primary btn-glow px-6 py-3 rounded-full text-sm">
                         Minta Sample Gratis →
                     </a>
-                    <a href="#products" class="btn-ghost px-8 py-3.5 rounded-full text-sm">
+                    <a href="#products" class="btn-ghost px-6 py-3 rounded-full text-sm">
                         Lihat Produk
                     </a>
                 </div>
 
-                {{-- mini stats row --}}
-                <div class="flex flex-wrap items-center gap-0 border-t border-white/5 pt-8">
+                {{-- mini stats — 2x2 on mobile, 4 col on desktop --}}
+                <div class="grid grid-cols-2 lg:flex lg:flex-wrap gap-4 border-t border-white/5 pt-6">
                     @foreach([['30+','Negara Ekspor'],['75+','Klien Global'],['100%','Natural'],['3+','Tahun']] as [$v,$l])
-                    <div class="pr-8 {{ !$loop->last ? 'border-r border-white/10 mr-8' : '' }}">
-                        <div class="font-grotesk font-bold text-2xl gold-text leading-none">{{ $v }}</div>
+                    <div class="lg:pr-8 {{ !$loop->last ? 'lg:border-r lg:border-white/10 lg:mr-8' : '' }}">
+                        <div class="font-grotesk font-bold text-xl lg:text-2xl gold-text leading-none">{{ $v }}</div>
                         <div class="text-gray-600 text-xs mt-1 tracking-wide">{{ $l }}</div>
                     </div>
                     @endforeach
                 </div>
             </div>
 
-            {{-- ── Right visual ─────────────────── --}}
-            <div class="lg:col-span-5 relative" data-aos="fade-left" data-aos-delay="160">
+            {{-- ── Right visual — hidden on mobile, shown on lg ── --}}
+            <div class="hidden lg:block lg:col-span-5 relative" data-aos="fade-left" data-aos-delay="160">
 
                 {{-- outer ring decoration --}}
                 <div class="absolute -inset-4 rounded-3xl border border-gold/10 pointer-events-none"></div>
                 <div class="absolute -inset-8 rounded-3xl border border-gold/5  pointer-events-none"></div>
 
                 {{-- main image --}}
-                <div class="img-zoom rounded-2xl overflow-hidden relative max-w-sm mx-auto lg:max-w-none">
+                <div class="img-zoom rounded-2xl overflow-hidden relative">
                     <img src="https://loremflickr.com/600/750/charcoal,briquette?lock=10"
                          alt="Briket Arang Premium"
                          class="w-full aspect-[4/5] object-cover"
                          style="filter: brightness(.55) saturate(.7);">
-
-                    {{-- gold tint overlay --}}
                     <div class="absolute inset-0"
                          style="background: linear-gradient(135deg, rgba(212,175,55,.08) 0%, transparent 60%, rgba(8,8,8,.7) 100%);">
                     </div>
-
-                    {{-- corner tag --}}
                     <div class="absolute top-5 left-5 glass rounded-xl px-4 py-2">
                         <span class="section-tag">Premium Grade</span>
                     </div>
                 </div>
 
-                {{-- floating card: ISO --}}
-                <div class="glass card-lift absolute -bottom-6 -left-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl"
-                     data-aos="zoom-in" data-aos-delay="400">
+                {{-- floating cards — desktop only --}}
+                <div class="glass card-lift absolute -bottom-6 -left-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl">
                     <div class="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
                         <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -104,9 +99,7 @@
                     </div>
                 </div>
 
-                {{-- floating card: Eco --}}
-                <div class="glass card-lift absolute -top-5 right-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl"
-                     data-aos="zoom-in" data-aos-delay="500">
+                <div class="glass card-lift absolute -top-5 right-4 rounded-2xl p-4 flex items-center gap-3 shadow-2xl">
                     <div class="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
                         <span class="text-lg">🌿</span>
                     </div>
@@ -145,7 +138,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §3  ABOUT — split with big number accent
 ══════════════════════════════════════════════════════════════ --}}
-<section id="about" class="py-28 bg-void relative overflow-hidden">
+<section id="about" class="py-14 lg:py-28 bg-void relative overflow-hidden">
     <div class="glow-gold absolute top-0 left-0 w-[500px] h-[500px]" style="opacity:.06"></div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
@@ -246,7 +239,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §4.5  KEUNGGULAN PRODUK
 ══════════════════════════════════════════════════════════════ --}}
-<section class="py-28 bg-void">
+<section class="py-14 lg:py-28 bg-void">
     <div class="max-w-6xl mx-auto px-6 lg:px-14">
 
         {{-- Header --}}
@@ -354,7 +347,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §5  PRODUCTS — glassmorphism grid
 ══════════════════════════════════════════════════════════════ --}}
-<section id="products" class="py-28 bg-void relative overflow-hidden">
+<section id="products" class="py-14 lg:py-28 bg-void relative overflow-hidden">
     <div class="glow-gold absolute top-1/2 right-0 w-[500px] h-[500px]" style="opacity:.07; transform:translateY(-50%)"></div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
@@ -450,7 +443,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §6  WHY US — alternating feature rows
 ══════════════════════════════════════════════════════════════ --}}
-<section class="py-28 bg-void-2">
+<section class="py-14 lg:py-28 bg-void-2">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
         <div class="text-center mb-20" data-aos="fade-up">
@@ -526,7 +519,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §7  PRODUCTION PROCESS
 ══════════════════════════════════════════════════════════════ --}}
-<section id="process" class="py-28 bg-void relative overflow-hidden">
+<section id="process" class="py-14 lg:py-28 bg-void relative overflow-hidden">
     <div class="glow-gold absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px]" style="opacity:.05"></div>
 
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
@@ -583,7 +576,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §8  EXPORT MAP — countries grid
 ══════════════════════════════════════════════════════════════ --}}
-<section id="export" class="py-28 bg-void-2">
+<section id="export" class="py-14 lg:py-28 bg-void-2">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
@@ -624,7 +617,7 @@
 {{-- ══════════════════════════════════════════════════════════════
      §9  BLOG — editorial grid
 ══════════════════════════════════════════════════════════════ --}}
-<section id="blog" class="py-28 bg-void">
+<section id="blog" class="py-14 lg:py-28 bg-void">
     <div class="max-w-7xl mx-auto px-6 lg:px-14">
 
         <div class="flex justify-between items-end mb-16">
