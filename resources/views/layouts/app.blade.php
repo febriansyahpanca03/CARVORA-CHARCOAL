@@ -410,7 +410,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @stack('head')
 </head>
-<body x-data="{ nav: false, scrolled: false, waHidden: false }" @scroll.window="scrolled = window.scrollY > 40">
+<body x-data="{ nav: false, scrolled: false, waHidden: true }" @scroll.window="scrolled = window.scrollY > 40">
 
 {{-- ══ LOADING SCREEN ══ --}}
 <div id="loading-screen">
