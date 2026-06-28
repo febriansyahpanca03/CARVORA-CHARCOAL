@@ -652,12 +652,11 @@
 
         {{-- World Map Image — interactive --}}
         <div class="rounded-3xl overflow-hidden border border-gold/10 mb-10 relative" data-aos="fade-up"
-             style="height: 420px; background:#000;">
+             style="height: 420px; background: #000 url('/worldwide.png') center/cover no-repeat;">
 
-            {{-- Gambar peta --}}
-            <img src="/worldwide.png" alt="World Export Map"
-                 class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-500"
-                 :style="activeCountry ? 'opacity:.6; filter:brightness(.7)' : 'opacity:.9; filter:brightness(1)'">
+            {{-- Overlay: gelap saat negara aktif --}}
+            <div class="absolute inset-0 pointer-events-none transition-all duration-500"
+                 :style="activeCountry ? 'background:rgba(0,0,0,.4)' : 'background:rgba(0,0,0,0)'"></div>
 
             {{-- Vignette --}}
             <div class="absolute inset-0 pointer-events-none"
