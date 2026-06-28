@@ -650,116 +650,31 @@
             </p>
         </div>
 
-        {{-- World Map SVG --}}
-        <div class="glass rounded-3xl overflow-hidden border border-gold/10 mb-10 relative" data-aos="fade-up"
-             style="height: 380px;">
+        {{-- World Map Image --}}
+        <div class="rounded-3xl overflow-hidden border border-gold/10 mb-10 relative" data-aos="fade-up"
+             style="height: 420px; background:#000;">
 
-            {{-- Ocean grid background --}}
+            {{-- Gambar peta --}}
+            <img src="/worldwide.png" alt="World Export Map"
+                 class="absolute inset-0 w-full h-full object-cover object-center"
+                 style="opacity:.9;">
+
+            {{-- Subtle dark vignette overlay --}}
             <div class="absolute inset-0"
-                 style="background:#07090D; background-image: linear-gradient(rgba(212,175,55,.04) 1px,transparent 1px), linear-gradient(90deg,rgba(212,175,55,.04) 1px,transparent 1px); background-size:55px 55px;"></div>
-
-            {{-- SVG continents --}}
-            <svg viewBox="0 0 1000 480" class="absolute inset-0 w-full h-full" style="opacity:.7" preserveAspectRatio="xMidYMid meet">
-                {{-- North America --}}
-                <path d="M80,55 L120,50 L175,52 L210,62 L235,85 L240,115 L230,148 L210,168 L185,175 L160,168 L140,155 L118,140 L100,118 L85,92 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Central America --}}
-                <path d="M185,175 L210,168 L220,185 L208,200 L190,205 L180,195 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- South America --}}
-                <path d="M180,215 L220,208 L245,225 L250,260 L242,300 L228,335 L208,358 L185,362 L165,345 L155,310 L158,270 L165,240 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Greenland --}}
-                <path d="M195,20 L230,15 L250,25 L245,42 L220,48 L200,40 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Europe --}}
-                <path d="M435,48 L475,44 L510,50 L525,68 L520,92 L505,108 L480,115 L458,110 L440,95 L432,75 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Scandinavia --}}
-                <path d="M448,25 L478,20 L490,35 L480,52 L462,55 L448,42 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Africa --}}
-                <path d="M438,128 L500,118 L528,132 L540,162 L538,210 L528,255 L510,295 L490,318 L465,322 L442,308 L428,272 L422,228 L426,182 L432,152 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Asia main --}}
-                <path d="M525,48 L620,42 L700,45 L760,55 L800,72 L815,100 L800,128 L770,148 L720,158 L668,155 L622,148 L580,135 L548,118 L530,95 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Middle East --}}
-                <path d="M528,118 L580,112 L605,125 L608,148 L588,162 L558,158 L535,145 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- India --}}
-                <path d="M608,148 L648,142 L665,158 L660,195 L640,218 L618,215 L605,195 L602,168 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- SE Asia --}}
-                <path d="M668,155 L720,148 L748,162 L750,185 L728,198 L698,195 L672,182 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Indonesia (home) --}}
-                <path d="M685,208 L720,202 L742,210 L740,225 L715,228 L688,222 Z" fill="#2A2010" stroke="#D4AF37" stroke-width="1.5"/>
-                {{-- Japan/Korea --}}
-                <path d="M770,85 L792,80 L802,95 L795,112 L775,115 L762,100 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- Australia --}}
-                <path d="M715,278 L790,272 L835,285 L845,315 L838,345 L812,362 L775,368 L742,355 L718,332 L708,302 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- New Zealand --}}
-                <path d="M855,345 L870,338 L878,355 L868,370 L855,368 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-                {{-- UK --}}
-                <path d="M428,52 L438,48 L442,60 L436,68 L426,62 Z" fill="#1C2030" stroke="#2a3045" stroke-width="1"/>
-            </svg>
-
-            {{-- Export Country Dots --}}
-            @php
-            $dots = [
-                ['left'=>'56.5%','top'=>'38%','name'=>'Saudi Arabia','pulse'=>true],
-                ['left'=>'58%',  'top'=>'42%','name'=>'UAE',         'pulse'=>false],
-                ['left'=>'47%',  'top'=>'22%','name'=>'Jerman',      'pulse'=>true],
-                ['left'=>'45%',  'top'=>'18%','name'=>'Belanda',     'pulse'=>false],
-                ['left'=>'17%',  'top'=>'37%','name'=>'Amerika',     'pulse'=>true],
-                ['left'=>'79%',  'top'=>'64%','name'=>'Australia',   'pulse'=>true],
-                ['left'=>'80%',  'top'=>'24%','name'=>'Jepang',      'pulse'=>true],
-                ['left'=>'78%',  'top'=>'21%','name'=>'Korea',       'pulse'=>false],
-                ['left'=>'71%',  'top'=>'50%','name'=>'Malaysia',    'pulse'=>false],
-                ['left'=>'72%',  'top'=>'53%','name'=>'Singapura',   'pulse'=>false],
-                ['left'=>'52%',  'top'=>'26%','name'=>'Turki',       'pulse'=>false],
-                ['left'=>'50%',  'top'=>'40%','name'=>'Mesir',       'pulse'=>false],
-            ];
-            @endphp
-
-            @foreach($dots as $dot)
-            <div class="absolute" style="left:{{ $dot['left'] }}; top:{{ $dot['top'] }}; transform:translate(-50%,-50%);">
-                <div class="relative group cursor-pointer">
-                    {{-- Pulse ring --}}
-                    @if($dot['pulse'])
-                    <div class="absolute inset-0 rounded-full bg-gold opacity-40 animate-ping" style="width:10px;height:10px;"></div>
-                    @endif
-                    {{-- Dot --}}
-                    <div class="w-2.5 h-2.5 rounded-full border-2 border-gold bg-gold/60 relative z-10"
-                         style="box-shadow:0 0 8px rgba(212,175,55,.7);"></div>
-                    {{-- Tooltip --}}
-                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-void-2 border border-gold/30 rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 whitespace-nowrap"
-                         style="font-size:10px; color:#D4AF37; font-family:'Space Grotesk',sans-serif;">
-                        {{ $dot['name'] }}
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
-            {{-- Indonesia home marker --}}
-            <div class="absolute" style="left:71%;top:56%;transform:translate(-50%,-50%);">
-                <div class="relative group cursor-pointer">
-                    <div class="absolute inset-0 rounded-full bg-green-400 opacity-40 animate-ping" style="width:12px;height:12px;"></div>
-                    <div class="w-3 h-3 rounded-full border-2 border-green-400 bg-green-500/60 relative z-10"
-                         style="box-shadow:0 0 10px rgba(74,222,128,.7);"></div>
-                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-void-2 border border-green-400/30 rounded-lg px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 whitespace-nowrap"
-                         style="font-size:10px; color:#4ade80; font-family:'Space Grotesk',sans-serif;">
-                        Indonesia (Home)
-                    </div>
-                </div>
-            </div>
-
-            {{-- Legend --}}
-            <div class="absolute bottom-4 left-4 flex flex-wrap gap-4">
-                <div class="flex items-center gap-1.5">
-                    <div class="w-2 h-2 rounded-full bg-gold" style="box-shadow:0 0 6px rgba(212,175,55,.7)"></div>
-                    <span class="text-gray-600 font-grotesk" style="font-size:10px">Export Country</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                    <div class="w-2 h-2 rounded-full bg-green-400" style="box-shadow:0 0 6px rgba(74,222,128,.7)"></div>
-                    <span class="text-gray-600 font-grotesk" style="font-size:10px">Indonesia</span>
-                </div>
-            </div>
+                 style="background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.5) 100%);"></div>
 
             {{-- Country count badge --}}
-            <div class="absolute top-4 right-4 glass rounded-xl px-3 py-2 border border-gold/20">
-                <div class="font-grotesk font-bold text-gold text-sm">30+</div>
-                <div class="text-gray-600 font-grotesk" style="font-size:9px">Countries</div>
+            <div class="absolute top-4 right-4 glass rounded-xl px-4 py-2.5 border border-gold/30">
+                <div class="font-grotesk font-bold text-gold text-base leading-none">30+</div>
+                <div class="text-gray-500 font-grotesk mt-0.5" style="font-size:9px; letter-spacing:.1em">COUNTRIES</div>
+            </div>
+
+            {{-- Bottom label --}}
+            <div class="absolute bottom-4 left-0 right-0 flex justify-center">
+                <div class="glass rounded-full px-5 py-2 border border-gold/20 flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></div>
+                    <span class="text-gray-400 font-grotesk text-xs tracking-widest uppercase">Jaringan Ekspor Global Carvora Charcoal</span>
+                </div>
             </div>
         </div>
 
