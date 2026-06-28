@@ -663,21 +663,33 @@
             <div class="absolute inset-0 pointer-events-none"
                  style="background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.5) 100%);"></div>
 
-            {{-- Markers per country --}}
+            {{-- Markers per country (posisi dari koordinat GPS) --}}
             @php
             $markers = [
-                'SA' => ['left'=>'57%','top'=>'40%','name'=>'Saudi Arabia'],
-                'AE' => ['left'=>'59%','top'=>'44%','name'=>'UAE'],
-                'DE' => ['left'=>'48%','top'=>'23%','name'=>'Germany'],
-                'NL' => ['left'=>'46%','top'=>'20%','name'=>'Netherlands'],
-                'US' => ['left'=>'18%','top'=>'35%','name'=>'Amerika'],
-                'AU' => ['left'=>'80%','top'=>'68%','name'=>'Australia'],
-                'JP' => ['left'=>'82%','top'=>'27%','name'=>'Japan'],
-                'KR' => ['left'=>'80%','top'=>'24%','name'=>'Korea'],
-                'MY' => ['left'=>'72%','top'=>'51%','name'=>'Malaysia'],
-                'SG' => ['left'=>'73%','top'=>'54%','name'=>'Singapore'],
-                'TR' => ['left'=>'53%','top'=>'28%','name'=>'Turkey'],
-                'EG' => ['left'=>'51%','top'=>'40%','name'=>'Egypt'],
+                // Saudi Arabia  lat=24, lon=45
+                'SA' => ['left'=>'62.5%','top'=>'36.7%','name'=>'Saudi Arabia'],
+                // UAE            lat=24, lon=54
+                'AE' => ['left'=>'65.0%','top'=>'36.7%','name'=>'UAE'],
+                // Germany        lat=51, lon=10
+                'DE' => ['left'=>'52.8%','top'=>'21.7%','name'=>'Germany'],
+                // Netherlands    lat=52, lon=5
+                'NL' => ['left'=>'51.4%','top'=>'21.1%','name'=>'Netherlands'],
+                // USA            lat=38, lon=-97
+                'US' => ['left'=>'23.1%','top'=>'28.9%','name'=>'Amerika'],
+                // Australia      lat=-25, lon=133
+                'AU' => ['left'=>'86.9%','top'=>'63.9%','name'=>'Australia'],
+                // Japan          lat=36, lon=138
+                'JP' => ['left'=>'88.3%','top'=>'30.0%','name'=>'Japan'],
+                // South Korea    lat=37, lon=128
+                'KR' => ['left'=>'85.6%','top'=>'29.4%','name'=>'Korea'],
+                // Malaysia       lat=3,  lon=109
+                'MY' => ['left'=>'80.3%','top'=>'48.3%','name'=>'Malaysia'],
+                // Singapore      lat=1,  lon=104
+                'SG' => ['left'=>'78.9%','top'=>'49.4%','name'=>'Singapore'],
+                // Turkey         lat=39, lon=35
+                'TR' => ['left'=>'59.7%','top'=>'28.3%','name'=>'Turkey'],
+                // Egypt          lat=27, lon=30
+                'EG' => ['left'=>'58.3%','top'=>'35.0%','name'=>'Egypt'],
             ];
             @endphp
 
