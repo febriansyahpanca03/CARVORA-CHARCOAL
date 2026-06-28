@@ -650,48 +650,100 @@
             </p>
         </div>
 
-        {{-- World Map Image --}}
+        {{-- World Map Image — interactive --}}
         <div class="rounded-3xl overflow-hidden border border-gold/10 mb-10 relative" data-aos="fade-up"
              style="height: 420px; background:#000;">
 
             {{-- Gambar peta --}}
             <img src="/worldwide.png" alt="World Export Map"
-                 class="absolute inset-0 w-full h-full object-cover object-center"
-                 style="opacity:.9;">
+                 class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-500"
+                 :style="activeCountry ? 'opacity:.6; filter:brightness(.7)' : 'opacity:.9; filter:brightness(1)'">
 
-            {{-- Subtle dark vignette overlay --}}
-            <div class="absolute inset-0"
+            {{-- Vignette --}}
+            <div class="absolute inset-0 pointer-events-none"
                  style="background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.5) 100%);"></div>
 
-            {{-- Country count badge --}}
+            {{-- Markers per country --}}
+            @php
+            $markers = [
+                'SA' => ['left'=>'57%','top'=>'40%','name'=>'Saudi Arabia'],
+                'AE' => ['left'=>'59%','top'=>'44%','name'=>'UAE'],
+                'DE' => ['left'=>'48%','top'=>'23%','name'=>'Germany'],
+                'NL' => ['left'=>'46%','top'=>'20%','name'=>'Netherlands'],
+                'US' => ['left'=>'18%','top'=>'35%','name'=>'Amerika'],
+                'AU' => ['left'=>'80%','top'=>'68%','name'=>'Australia'],
+                'JP' => ['left'=>'82%','top'=>'27%','name'=>'Japan'],
+                'KR' => ['left'=>'80%','top'=>'24%','name'=>'Korea'],
+                'MY' => ['left'=>'72%','top'=>'51%','name'=>'Malaysia'],
+                'SG' => ['left'=>'73%','top'=>'54%','name'=>'Singapore'],
+                'TR' => ['left'=>'53%','top'=>'28%','name'=>'Turkey'],
+                'EG' => ['left'=>'51%','top'=>'40%','name'=>'Egypt'],
+            ];
+            @endphp
+
+            @foreach($markers as $code => $m)
+            <div class="absolute" style="left:{{ $m['left'] }}; top:{{ $m['top'] }}; transform:translate(-50%,-50%); z-index:10;">
+                {{-- Resting dot --}}
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === '{{ $code }}' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                {{-- Active glow state --}}
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === '{{ $code }}' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    {{-- Label --}}
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        {{ $m['name'] }}
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            {{-- Badge --}}
             <div class="absolute top-4 right-4 glass rounded-xl px-4 py-2.5 border border-gold/30">
                 <div class="font-grotesk font-bold text-gold text-base leading-none">30+</div>
                 <div class="text-gray-500 font-grotesk mt-0.5" style="font-size:9px; letter-spacing:.1em">COUNTRIES</div>
             </div>
 
-            {{-- Bottom label --}}
+            {{-- Hint --}}
             <div class="absolute bottom-4 left-0 right-0 flex justify-center">
-                <div class="glass rounded-full px-5 py-2 border border-gold/20 flex items-center gap-2">
+                <div class="glass rounded-full px-5 py-2 border border-gold/20 flex items-center gap-2 transition-all duration-300"
+                     :class="activeCountry ? 'border-gold/40' : ''">
                     <div class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></div>
-                    <span class="text-gray-400 font-grotesk text-xs tracking-widest uppercase">Jaringan Ekspor Global Carvora Charcoal</span>
+                    <span class="text-gray-400 font-grotesk text-xs tracking-widest uppercase"
+                          x-text="activeCountry ? 'Klik negara lain atau klik lagi untuk reset' : 'Klik bendera negara untuk melihat lokasinya'"></span>
                 </div>
             </div>
         </div>
 
-        {{-- Country flags grid below map --}}
+        {{-- Country flags grid — clickable --}}
         @php
         $countries = [
-            ['🇸🇦','Saudi Arabia'],['🇦🇪','UAE'],['🇩🇪','Jerman'],['🇳🇱','Belanda'],
-            ['🇺🇸','Amerika'],['🇦🇺','Australia'],['🇯🇵','Jepang'],['🇰🇷','Korea'],
-            ['🇲🇾','Malaysia'],['🇸🇬','Singapura'],['🇹🇷','Turki'],['🇪🇬','Mesir'],
+            ['SA','🇸🇦','Saudi Arabia'],['AE','🇦🇪','UAE'],
+            ['DE','🇩🇪','Jerman'],     ['NL','🇳🇱','Belanda'],
+            ['US','🇺🇸','Amerika'],    ['AU','🇦🇺','Australia'],
+            ['JP','🇯🇵','Jepang'],     ['KR','🇰🇷','Korea'],
+            ['MY','🇲🇾','Malaysia'],   ['SG','🇸🇬','Singapura'],
+            ['TR','🇹🇷','Turki'],      ['EG','🇪🇬','Mesir'],
         ];
         @endphp
         <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-            @foreach($countries as [$flag,$name])
-            <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="{{ $loop->index * 35 }}">
-                <div class="text-2xl mb-1">{{ $flag }}</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">{{ $name }}</div>
+            @foreach($countries as [$code,$flag,$name])
+            <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="{{ $loop->index * 35 }}"
+                 :class="activeCountry === '{{ $code }}'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === '{{ $code }}' ? null : '{{ $code }}'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === '{{ $code }}' ? 'scale-125' : 'scale-100'">{{ $flag }}</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === '{{ $code }}' ? 'text-gold font-semibold' : 'text-gray-600'">{{ $name }}</div>
             </div>
             @endforeach
         </div>

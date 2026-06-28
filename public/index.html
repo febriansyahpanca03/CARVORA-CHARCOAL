@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="BAVGiq2bkQSNjrbdnTZymVoeS9ThQw0kIGwiMJgq">
+    <meta name="csrf-token" content="QTOkIolAWTNMNHfYMZ6kQHPlGYyY8QJikvJ85qTP">
     <title>Briket Charcoal Indonesia – Premium Coconut Shell Charcoal Briquette</title>
     <meta name="description" content="Produsen briket arang tempurung kelapa premium Indonesia. 100% alami, bebas kimia, ekspor ke 30+ negara.">
 
@@ -410,7 +410,7 @@
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-<body x-data="{ nav: false, scrolled: false, waHidden: true }" @scroll.window="scrolled = window.scrollY > 40">
+<body x-data="{ nav: false, scrolled: false, waHidden: true, activeCountry: null }" @scroll.window="scrolled = window.scrollY > 40">
 
 
 <div id="loading-screen">
@@ -1851,13 +1851,256 @@
 
             
             <img src="/worldwide.png" alt="World Export Map"
-                 class="absolute inset-0 w-full h-full object-cover object-center"
-                 style="opacity:.9;">
+                 class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-500"
+                 :style="activeCountry ? 'opacity:.6; filter:brightness(.7)' : 'opacity:.9; filter:brightness(1)'">
 
             
-            <div class="absolute inset-0"
+            <div class="absolute inset-0 pointer-events-none"
                  style="background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.5) 100%);"></div>
 
+            
+            
+                        <div class="absolute" style="left:57%; top:40%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'SA' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'SA' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Saudi Arabia
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:59%; top:44%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'AE' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'AE' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        UAE
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:48%; top:23%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'DE' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'DE' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Germany
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:46%; top:20%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'NL' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'NL' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Netherlands
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:18%; top:35%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'US' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'US' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Amerika
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:80%; top:68%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'AU' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'AU' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Australia
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:82%; top:27%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'JP' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'JP' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Japan
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:80%; top:24%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'KR' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'KR' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Korea
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:72%; top:51%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'MY' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'MY' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Malaysia
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:73%; top:54%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'SG' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'SG' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Singapore
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:53%; top:28%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'TR' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'TR' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Turkey
+                    </div>
+                </div>
+            </div>
+                        <div class="absolute" style="left:51%; top:40%; transform:translate(-50%,-50%); z-index:10;">
+                
+                <div class="w-2 h-2 rounded-full bg-gold/50 transition-all duration-300"
+                     :class="activeCountry === 'EG' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'"></div>
+
+                
+                <div class="absolute inset-0 flex items-center justify-center"
+                     :class="activeCountry === 'EG' ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+                     style="transition: opacity .4s ease;">
+                    <div class="absolute w-12 h-12 rounded-full border-2 border-gold animate-ping" style="opacity:.5;"></div>
+                    <div class="absolute w-8 h-8 rounded-full border border-gold/50 animate-ping" style="opacity:.3; animation-delay:.3s;"></div>
+                    <div class="w-4 h-4 rounded-full bg-gold relative z-10"
+                         style="box-shadow: 0 0 16px rgba(212,175,55,.9), 0 0 32px rgba(212,175,55,.5);"></div>
+                    
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap glass rounded-lg px-2.5 py-1 border border-gold/40"
+                         style="font-size:10px; color:#F5C842; font-family:'Space Grotesk',sans-serif; font-weight:600;">
+                        Egypt
+                    </div>
+                </div>
+            </div>
+            
             
             <div class="absolute top-4 right-4 glass rounded-xl px-4 py-2.5 border border-gold/30">
                 <div class="font-grotesk font-bold text-gold text-base leading-none">30+</div>
@@ -1866,74 +2109,148 @@
 
             
             <div class="absolute bottom-4 left-0 right-0 flex justify-center">
-                <div class="glass rounded-full px-5 py-2 border border-gold/20 flex items-center gap-2">
+                <div class="glass rounded-full px-5 py-2 border border-gold/20 flex items-center gap-2 transition-all duration-300"
+                     :class="activeCountry ? 'border-gold/40' : ''">
                     <div class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></div>
-                    <span class="text-gray-400 font-grotesk text-xs tracking-widest uppercase">Jaringan Ekspor Global Carvora Charcoal</span>
+                    <span class="text-gray-400 font-grotesk text-xs tracking-widest uppercase"
+                          x-text="activeCountry ? 'Klik negara lain atau klik lagi untuk reset' : 'Klik bendera negara untuk melihat lokasinya'"></span>
                 </div>
             </div>
         </div>
 
         
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="0">
-                <div class="text-2xl mb-1">🇸🇦</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Saudi Arabia</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="0"
+                 :class="activeCountry === 'SA'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'SA' ? null : 'SA'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'SA' ? 'scale-125' : 'scale-100'">🇸🇦</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'SA' ? 'text-gold font-semibold' : 'text-gray-600'">Saudi Arabia</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="35">
-                <div class="text-2xl mb-1">🇦🇪</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">UAE</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="35"
+                 :class="activeCountry === 'AE'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'AE' ? null : 'AE'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'AE' ? 'scale-125' : 'scale-100'">🇦🇪</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'AE' ? 'text-gold font-semibold' : 'text-gray-600'">UAE</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="70">
-                <div class="text-2xl mb-1">🇩🇪</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Jerman</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="70"
+                 :class="activeCountry === 'DE'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'DE' ? null : 'DE'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'DE' ? 'scale-125' : 'scale-100'">🇩🇪</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'DE' ? 'text-gold font-semibold' : 'text-gray-600'">Jerman</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="105">
-                <div class="text-2xl mb-1">🇳🇱</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Belanda</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="105"
+                 :class="activeCountry === 'NL'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'NL' ? null : 'NL'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'NL' ? 'scale-125' : 'scale-100'">🇳🇱</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'NL' ? 'text-gold font-semibold' : 'text-gray-600'">Belanda</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="140">
-                <div class="text-2xl mb-1">🇺🇸</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Amerika</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="140"
+                 :class="activeCountry === 'US'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'US' ? null : 'US'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'US' ? 'scale-125' : 'scale-100'">🇺🇸</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'US' ? 'text-gold font-semibold' : 'text-gray-600'">Amerika</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="175">
-                <div class="text-2xl mb-1">🇦🇺</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Australia</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="175"
+                 :class="activeCountry === 'AU'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'AU' ? null : 'AU'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'AU' ? 'scale-125' : 'scale-100'">🇦🇺</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'AU' ? 'text-gold font-semibold' : 'text-gray-600'">Australia</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="210">
-                <div class="text-2xl mb-1">🇯🇵</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Jepang</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="210"
+                 :class="activeCountry === 'JP'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'JP' ? null : 'JP'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'JP' ? 'scale-125' : 'scale-100'">🇯🇵</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'JP' ? 'text-gold font-semibold' : 'text-gray-600'">Jepang</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="245">
-                <div class="text-2xl mb-1">🇰🇷</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Korea</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="245"
+                 :class="activeCountry === 'KR'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'KR' ? null : 'KR'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'KR' ? 'scale-125' : 'scale-100'">🇰🇷</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'KR' ? 'text-gold font-semibold' : 'text-gray-600'">Korea</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="280">
-                <div class="text-2xl mb-1">🇲🇾</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Malaysia</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="280"
+                 :class="activeCountry === 'MY'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'MY' ? null : 'MY'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'MY' ? 'scale-125' : 'scale-100'">🇲🇾</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'MY' ? 'text-gold font-semibold' : 'text-gray-600'">Malaysia</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="315">
-                <div class="text-2xl mb-1">🇸🇬</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Singapura</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="315"
+                 :class="activeCountry === 'SG'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'SG' ? null : 'SG'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'SG' ? 'scale-125' : 'scale-100'">🇸🇬</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'SG' ? 'text-gold font-semibold' : 'text-gray-600'">Singapura</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="350">
-                <div class="text-2xl mb-1">🇹🇷</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Turki</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="350"
+                 :class="activeCountry === 'TR'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'TR' ? null : 'TR'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'TR' ? 'scale-125' : 'scale-100'">🇹🇷</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'TR' ? 'text-gold font-semibold' : 'text-gray-600'">Turki</div>
             </div>
-                        <div class="glass card-lift rounded-xl py-4 text-center"
-                 data-aos="zoom-in" data-aos-delay="385">
-                <div class="text-2xl mb-1">🇪🇬</div>
-                <div class="text-gray-600 text-[10px] font-grotesk tracking-wide">Mesir</div>
+                        <div class="glass card-lift rounded-xl py-4 text-center cursor-pointer select-none transition-all duration-300"
+                 data-aos="zoom-in" data-aos-delay="385"
+                 :class="activeCountry === 'EG'
+                    ? 'border border-gold/60 bg-gold/8 shadow-lg'
+                    : 'border border-white/5'"
+                 @click="activeCountry = activeCountry === 'EG' ? null : 'EG'">
+                <div class="text-2xl mb-1 transition-transform duration-300"
+                     :class="activeCountry === 'EG' ? 'scale-125' : 'scale-100'">🇪🇬</div>
+                <div class="text-[10px] font-grotesk tracking-wide transition-colors duration-300"
+                     :class="activeCountry === 'EG' ? 'text-gold font-semibold' : 'text-gray-600'">Mesir</div>
             </div>
                     </div>
     </div>
